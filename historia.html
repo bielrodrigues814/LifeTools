@@ -13,7 +13,7 @@
 
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
+      background-color: #f0f0f0;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -25,83 +25,107 @@
     .container {
       max-width: 1200px;
       width: 100%;
-      text-align: center;
       background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      padding: 20px;
+      padding: 30px;
+      margin-top: 40px;
     }
 
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .header h1 {
       font-size: 2rem;
       color: #333;
+      font-weight: bold;
     }
 
     .voltar-btn {
-      background-color: #333;
+      background-color: #4CAF50;
       color: white;
       padding: 10px 20px;
       font-size: 1rem;
       text-decoration: none;
       border-radius: 5px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s ease;
     }
 
     .voltar-btn:hover {
-      background-color: #575757;
+      background-color: #45a049;
     }
 
     .conteudo {
       text-align: left;
-      margin-top: 40px;
+      margin-top: 30px;
       font-size: 1.2rem;
       color: #555;
     }
 
-    .conteudo h2 {
+    .conteudo h2, .lições h3 {
       font-size: 1.8rem;
       margin-bottom: 20px;
       color: #333;
+      font-weight: bold;
     }
 
-    .conteudo ul {
+    .conteudo p, .lições p {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .conteudo ul, .lições ul {
       list-style-type: disc;
       padding-left: 20px;
       margin-bottom: 20px;
     }
 
-    .conteudo li {
+    .conteudo li, .lições li {
       margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: #555;
     }
 
     .lições {
       margin-top: 30px;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: #555;
     }
 
-    .lições h3 {
-      font-size: 1.7rem;
-      margin-bottom: 15px;
-    }
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
 
-    .lições ul {
-      list-style-type: square;
-      padding-left: 20px;
-      text-align: left;
-    }
+      .header h1 {
+        font-size: 1.5rem;
+      }
 
-    .lições li {
-      margin-bottom: 10px;
-    }
+      .voltar-btn {
+        padding: 8px 15px;
+      }
 
+      .conteudo {
+        font-size: 1rem;
+      }
+
+      .conteudo h2 {
+        font-size: 1.6rem;
+      }
+
+      .conteudo li {
+        font-size: 1rem;
+      }
+
+      .lições h3 {
+        font-size: 1.6rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -109,40 +133,40 @@
   <div class="container">
     <div class="header">
       <h1>História - A Matéria Escolar</h1>
-      <a href="file:///C:/OrganizePro/materia_escolar.html" class="voltar-btn">Voltar</a>
+      <a href="https://bielrodrigues814.github.io/LifeTools/materia_escolar.html" class="voltar-btn">Voltar</a>
     </div>
 
     <div class="conteudo">
-      <h2>Origem da História como Matéria Escolar</h2>
-      <p>A matéria de História, como a conhecemos hoje nas escolas, tem suas raízes na necessidade humana de entender o passado e aprender com ele. Desde a Grécia Antiga, filósofos e historiadores como Heródoto e Tucídides começaram a escrever sobre eventos passados, buscando estabelecer uma narrativa do que ocorreu e por que aconteceu.</p>
-      
-      <h2>O Papel da História no Ensino</h2>
-      <p>Durante séculos, a História foi ensinada de maneira mais filosófica e religiosa, com foco em histórias de reis, impérios e guerras. No entanto, à medida que os tempos foram mudando, a História passou a ser vista também como uma ferramenta para compreender as sociedades, suas culturas e suas transformações ao longo do tempo.</p>
+      <h2>Como Surgiu a História como Matéria Escolar?</h2>
+      <p>A História, como matéria escolar, tem suas origens em tempos antigos, quando os primeiros estudiosos começaram a organizar e registrar eventos passados. A formalização da História no currículo escolar, no entanto, aconteceu a partir do século XIX, quando houve um grande avanço na educação pública e no estudo sistemático das civilizações e eventos passados.</p>
 
-      <h2>A História no Ensino Moderno</h2>
-      <p>Hoje, a História é uma disciplina fundamental nas escolas, onde os alunos aprendem sobre as grandes civilizações, eventos que marcaram a humanidade e como esses eventos moldaram o mundo atual. A História é uma matéria que vai muito além da memorização de datas e fatos; ela ensina a pensar criticamente sobre o passado e suas implicações no presente.</p>
+      <h2>Quem "Inventou" a História como Conhecimento Formal?</h2>
+      <p>O "pai" da História moderna, considerado um dos primeiros historiadores a tratar a História de forma científica, é Heródoto, da Grécia Antiga. Embora o estudo sobre o passado remonte a milênios, foi no século XIX que a História passou a ser entendida como uma disciplina acadêmica, com uma metodologia própria e uma abordagem mais crítica e analítica.</p>
 
-      <h2>A Função de Estudar História</h2>
-      <p>Estudar História permite que os alunos desenvolvam uma compreensão profunda do mundo e das diferentes culturas. A matéria ajuda a formar cidadãos mais conscientes, que entendem os processos sociais, políticos e econômicos que moldaram o mundo. Ela também promove o desenvolvimento do pensamento crítico, permitindo que os alunos analisem diferentes pontos de vista e identifiquem padrões e consequências de eventos históricos.</p>
+      <h2>O Que Serve Estudar História?</h2>
+      <p>Estudar História não se limita a memorizar datas e nomes, mas proporciona uma compreensão profunda das civilizações, eventos e culturas. Essa matéria nos ajuda a entender como chegamos ao presente e como as sociedades evoluíram ao longo dos séculos. Além disso, promove o desenvolvimento do pensamento crítico e da capacidade de analisar as causas e consequências dos eventos históricos.</p>
+
+      <h2>Quanto Ganha um Profissional de História?</h2>
+      <p>A carreira de historiador oferece diversas oportunidades, tanto no setor público quanto privado. O salário de um historiador pode variar bastante dependendo da área de atuação e da experiência do profissional. Em média, um historiador no Brasil pode ganhar entre R$ 2.500 a R$ 7.000 mensais, sendo que em cargos acadêmicos ou em consultorias, esse valor pode ser superior. Além disso, a profissão também permite o trabalho como professor, pesquisador ou curador em museus e arquivos.</p>
 
       <h2>Importância da História no Ensino Atual</h2>
       <ul>
-        <li><strong>Compreensão do Passado:</strong> Aprender sobre o passado permite que entendamos melhor o presente e tomemos decisões mais informadas no futuro.</li>
-        <li><strong>Desenvolvimento do Pensamento Crítico:</strong> Estudar as diversas interpretações históricas ajuda a desenvolver a capacidade de analisar e avaliar diferentes fontes de informação.</li>
-        <li><strong>Promoção da Cidadania:</strong> A História ensina sobre os direitos humanos, as lutas sociais e as construções políticas que afetam as sociedades até hoje.</li>
-        <li><strong>Inspiração para o Futuro:</strong> Ao estudar os erros e acertos do passado, podemos buscar soluções para problemas atuais e futuros.</li>
+        <li><strong>Compreensão do Passado:</strong> Ajuda a entender o presente e a tomar decisões mais informadas no futuro.</li>
+        <li><strong>Desenvolvimento do Pensamento Crítico:</strong> A história nos ensina a questionar e analisar diferentes fontes e narrativas.</li>
+        <li><strong>Promoção da Cidadania:</strong> Ensina sobre os direitos humanos, as lutas sociais e políticas que moldaram as sociedades.</li>
+        <li><strong>Inspiração para o Futuro:</strong> O estudo do passado pode servir como base para a busca de soluções para problemas contemporâneos.</li>
       </ul>
     </div>
 
     <div class="lições">
       <h3>Lição de História: O Valor de Conhecer o Passado</h3>
-      <p>A matéria de História nos ajuda a compreender nossa identidade enquanto sociedade e nos conecta a nossa origem. Ao estudar a História, podemos aprender com os erros do passado, celebrar nossas conquistas e entender como as sociedades evoluíram para o mundo atual. Aqui estão algumas lições importantes:</p>
+      <p>A História é uma disciplina que nos ensina sobre nossa identidade enquanto sociedade e nos conecta à nossa origem. Ao estudar História, podemos aprender com os erros do passado, celebrar nossas conquistas e entender como as sociedades evoluíram para o mundo atual. Aqui estão algumas lições importantes:</p>
       <ul>
-        <li><strong>Compreender as Causas e Consequências:</strong> A História ensina a analisar causas e efeitos de grandes eventos, ajudando-nos a entender como cada decisão histórica pode ter impactado gerações.</li>
-        <li><strong>Desenvolver Empatia:</strong> Ao estudar as diferentes culturas e experiências humanas ao longo da História, os alunos desenvolvem empatia e respeito pelas diversidades.</li>
-        <li><strong>Refletir sobre a Mudança Social:</strong> A História é uma ferramenta poderosa para refletir sobre as mudanças sociais e buscar formas de melhorar a sociedade atual.</li>
+        <li><strong>Compreender as Causas e Consequências:</strong> A História ensina a analisar as causas e os efeitos de eventos significativos.</li>
+        <li><strong>Desenvolver Empatia:</strong> Ao estudar diversas culturas e experiências, desenvolvemos empatia e respeito pela diversidade humana.</li>
+        <li><strong>Refletir sobre a Mudança Social:</strong> A História nos leva a refletir sobre as mudanças sociais e nos incentiva a buscar formas de melhorar a sociedade.</li>
       </ul>
-      <p>A educação histórica é essencial para formar cidadãos informados, críticos e responsáveis, capazes de lidar com os desafios da sociedade moderna.</p>
+      <p>A educação histórica é essencial para formar cidadãos críticos, conscientes e preparados para enfrentar os desafios do presente e do futuro.</p>
     </div>
   </div>
 

@@ -32,6 +32,7 @@
       border-radius: 10px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       overflow: hidden;
+      flex-wrap: wrap;
     }
 
     .sidebar {
@@ -197,6 +198,43 @@
     .save-pdf-btn:hover {
       background-color: #0056b3;
     }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar a {
+        font-size: 16px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .task-form input,
+      .task-form select,
+      .task-form textarea {
+        font-size: 14px;
+      }
+
+      .task-form button {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -246,58 +284,52 @@
 
       <!-- Botão para salvar em PDF -->
       <button class="save-pdf-btn" onclick="saveAsPDF()">Salvar como PDF</button>
+
+      <!-- Botão Voltar -->
+      <a href="file:///C:/wamp64/www/LifeTools/index.html">
+        <button>Voltar</button>
+      </a>
     </div>
   </div>
 
   <script>
-    // Função para adicionar tarefas
+    // Função para adicionar tarefa
     function addTask() {
-      const title = document.getElementById("task-title").value;
-      const date = document.getElementById("task-date").value;
-      const time = document.getElementById("task-time").value;
-      const description = document.getElementById("task-desc").value;
+      const title = document.getElementById('task-title').value;
+      const date = document.getElementById('task-date').value;
+      const time = document.getElementById('task-time').value;
+      const description = document.getElementById('task-desc').value;
 
-      if (title && date && time) {
-        const taskList = document.getElementById("task-list");
-
-        // Cria o item da tarefa
-        const taskItem = document.createElement("li");
-
-        // Cria a estrutura da tarefa
-        taskItem.innerHTML = `
-          <div class="task-info">
-            <h3>${title}</h3>
-            <p><strong>Data:</strong> ${date} <strong>Hora:</strong> ${time}</p>
-            <p><strong>Descrição:</strong> ${description}</p>
-          </div>
-          <div class="task-actions">
-            <button onclick="removeTask(this)">Remover</button>
-            <input type="checkbox" onclick="toggleTaskCompletion(this)">
-          </div>
-        `;
-
-        // Adiciona a tarefa à lista
-        taskList.appendChild(taskItem);
-
-        // Limpa os campos
-        document.getElementById("task-title").value = "";
-        document.getElementById("task-date").value = "";
-        document.getElementById("task-time").value = "";
-        document.getElementById("task-desc").value = "";
+      if (!title || !date || !time || !description) {
+        alert('Por favor, preencha todos os campos.');
+        return;
       }
+
+      const taskList = document.getElementById('task-list');
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <div class="task-info">
+          <h3>${title}</h3>
+          <p>${description}</p>
+          <p><strong>Data:</strong> ${date} | <strong>Hora:</strong> ${time}</p>
+        </div>
+        <div class="task-actions">
+          <button onclick="deleteTask(this)">Deletar</button>
+        </div>
+      `;
+      taskList.appendChild(li);
+
+      // Limpar campos do formulário
+      document.getElementById('task-title').value = '';
+      document.getElementById('task-date').value = '';
+      document.getElementById('task-time').value = '';
+      document.getElementById('task-desc').value = '';
     }
 
-    // Função para remover tarefa
-    function removeTask(button) {
-      const taskItem = button.closest("li");
-      taskItem.remove();
-    }
-
-    // Função para marcar a tarefa como concluída
-    function toggleTaskCompletion(checkbox) {
-      const taskItem = checkbox.closest("li");
-      taskItem.style.textDecoration = checkbox.checked ? "line-through" : "none";
-      taskItem.style.opacity = checkbox.checked ? 0.6 : 1;
+    // Função para deletar tarefa
+    function deleteTask(button) {
+      const li = button.parentElement.parentElement;
+      li.remove();
     }
 
     // Função para salvar como PDF
@@ -305,29 +337,21 @@
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
 
-      // Adiciona o título
-      doc.setFontSize(18);
-      doc.text('Agenda de Tarefas', 10, 10);
+      doc.text("Agenda de Tarefas", 20, 10);
+      const taskList = document.getElementById('task-list').children;
+      let y = 20;
 
-      let yPosition = 20;
+      Array.from(taskList).forEach(task => {
+        const title = task.querySelector('h3').innerText;
+        const description = task.querySelector('p').innerText;
+        const date = task.querySelector('p').innerText.split('|')[0].split(":")[1].trim();
+        const time = task.querySelector('p').innerText.split('|')[1].split(":")[1].trim();
 
-      // Para cada tarefa, adicione ela no PDF
-      const tasks = document.querySelectorAll("#task-list li");
-      tasks.forEach(task => {
-        const title = task.querySelector(".task-info h3").innerText;
-        const date = task.querySelector(".task-info p").innerText.split(' ')[1];
-        const time = task.querySelector(".task-info p").innerText.split(' ')[3];
-        const description = task.querySelector(".task-info p:nth-of-type(2)").innerText.split(': ')[1];
-
-        doc.setFontSize(12);
-        doc.text(`Título: ${title}`, 10, yPosition);
-        doc.text(`Data: ${date} Hora: ${time}`, 10, yPosition + 6);
-        doc.text(`Descrição: ${description}`, 10, yPosition + 12);
-
-        yPosition += 20;  // Ajusta o espaçamento para a próxima tarefa
+        doc.text(`${title} - ${description}`, 20, y);
+        doc.text(`Data: ${date} | Hora: ${time}`, 20, y + 10);
+        y += 20;
       });
 
-      // Salva o arquivo PDF
       doc.save('agenda_de_tarefas.pdf');
     }
   </script>

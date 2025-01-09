@@ -11,21 +11,29 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        /* Estilos gerais */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f0f0;
             color: #333;
             line-height: 1.6;
+            padding: 0;
+            margin: 0;
         }
+
         header {
             background: #007BFF;
             color: white;
             padding: 20px;
             text-align: center;
         }
+
         header h1 {
             font-size: 2.5rem;
         }
+
+        /* Estilos do container principal */
         .container {
             width: 90%;
             max-width: 1200px;
@@ -35,18 +43,23 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .history-content {
             margin-top: 20px;
         }
+
         .history-content h2 {
             font-size: 2rem;
             margin-bottom: 10px;
         }
+
         .history-content p {
             font-size: 1.1rem;
             margin-bottom: 20px;
             text-align: justify;
         }
+
+        /* Estilo do botão de voltar */
         .btn-voltar {
             display: inline-block;
             background-color: #28a745;
@@ -58,18 +71,28 @@
             margin-top: 20px;
             text-align: center;
         }
+
         .btn-voltar:hover {
             background-color: #218838;
         }
+
+        /* Responsividade */
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2rem;
             }
+
             .history-content h2 {
                 font-size: 1.5rem;
             }
+
             .history-content p {
                 font-size: 1rem;
+            }
+
+            .btn-voltar {
+                font-size: 1rem;
+                padding: 8px 16px;
             }
         }
     </style>
@@ -87,19 +110,29 @@
 
             <p>Ao longo dos séculos, o português foi se diferenciando do latim, com influências de outros idiomas, como o árabe, após a invasão muçulmana na Península Ibérica, e o galego, que ajudou a moldar o que hoje conhecemos como português.</p>
 
-            <p>O português começou a se consolidar como língua distinta no século XII, quando o Reino de Portugal foi formado. No século XVI, com as grandes navegações, o idioma se espalhou por outros continentes, incluindo o Brasil, África e Ásia, dando origem a diversas variantes.</p>
+            <p>O português começou a se consolidar como língua distinta no século XII, quando o Reino de Portugal foi formado. No século XVI, com as grandes navegações, o idioma se espalhou por outros continentes, incluindo o Brasil, África e Ásia, dando origem a diversas variantes do português.</p>
 
             <p>Hoje, o português é a língua oficial de vários países, sendo uma das mais faladas do mundo, com mais de 260 milhões de falantes.</p>
+
+            <h2>O Português no Mundo</h2>
+            <p>O português é falado em países da Europa, América do Sul, África e Ásia. Além do Brasil, que é o maior país lusófono, o português também é a língua oficial de países como Portugal, Angola, Moçambique, Cabo Verde, São Tomé e Príncipe, Guiné-Bissau, Timor-Leste, e outros territórios.</p>
+
+            <h2>O Mercado de Trabalho e Salário do Profissional de Língua Portuguesa</h2>
+            <p>Profissionais especializados em Língua Portuguesa, como linguistas, tradutores e professores, têm diversas oportunidades de trabalho em escolas, universidades, editoras, agências de tradução, empresas de mídia, entre outros. Além disso, o profissional pode atuar como escritor, revisor de textos, ou especialista em literatura portuguesa.</p>
+
+            <p>Os salários para profissionais da área podem variar bastante, dependendo da experiência e do setor de atuação. Um professor de Língua Portuguesa pode ganhar entre R$ 2.000 e R$ 5.000 por mês, dependendo da carga horária e da instituição em que trabalha. Tradutores e revisores de textos podem ter rendimentos que variam de R$ 3.000 a R$ 7.000 mensais, especialmente se atuarem em setores especializados, como tradução jurídica ou literária.</p>
+
+            <p>Em áreas mais avançadas, como consultoria linguística, estudos da língua ou pós-graduação, o salário pode ser ainda maior. Além disso, o mercado para professores de português como língua estrangeira tem se expandido, com a crescente demanda por aprendizes da língua em outros países.</p>
         </div>
 
-        <a href="file:///C:/OrganizePro/materia_escolar.html" class="btn-voltar">Voltar</a>
+        <a href="file:///C:/wamp64/www/LifeTools/materia_escolar.html" class="btn-voltar">Voltar</a>
     </div>
 
     <script>
         // Função para retornar à página anterior ao clicar no botão
         const voltarBtn = document.querySelector('.btn-voltar');
         voltarBtn.addEventListener('click', function(event) {
-            window.location.href = 'file:///C:/OrganizePro/materia_escolar.html';
+            window.location.href = 'file:///C:/wamp64/www/LifeTools/materia_escolar.html'; // Novo caminho para a página de retorno
         });
     </script>
 

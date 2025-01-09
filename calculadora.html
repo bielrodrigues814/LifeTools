@@ -24,7 +24,8 @@
     }
 
     .calculator {
-      width: 320px;
+      width: 100%;
+      max-width: 360px;
       background-color: rgba(255, 255, 255, 0.85);
       border-radius: 20px;
       padding: 30px;
@@ -90,7 +91,6 @@
       color: #444;
     }
 
-    /* Botão de Voltar */
     .back-button {
       width: 200px;
       padding: 15px;
@@ -132,7 +132,6 @@
       margin: 5px 0;
     }
 
-    /* Estilo para alternar entre modos */
     .theme-toggle {
       background-color: #00c6ff;
       color: white;
@@ -145,6 +144,28 @@
 
     .theme-toggle:hover {
       background-color: #0099cc;
+    }
+
+    /* Responsividade */
+    @media screen and (max-width: 480px) {
+      .calculator {
+        width: 100%;
+        padding: 20px;
+      }
+      
+      .button {
+        font-size: 1.2rem;
+        padding: 15px;
+      }
+
+      .display {
+        font-size: 1.8rem;
+      }
+
+      .back-button {
+        font-size: 1rem;
+        width: 100%;
+      }
     }
 
   </style>
@@ -190,7 +211,7 @@
   </div>
 
   <!-- Botão Voltar -->
-  <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+  <a href="file:///C:/wamp64/www/LifeTools/index.html" class="back-button">Voltar</a>
 
   <script>
     let currentExpression = '';

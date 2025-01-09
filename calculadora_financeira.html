@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Financeira</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
 
         .container {
             background-color: #ffffff;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             padding: 40px;
             width: 90%;
             max-width: 800px;
@@ -27,13 +32,13 @@
         }
 
         h1 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: #4CAF50;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #007bff;
         }
 
         .form-container {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-align: left;
         }
 
@@ -46,16 +51,20 @@
 
         input[type="number"], input[type="text"] {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             margin: 8px 0;
             border: 2px solid #ddd;
             border-radius: 8px;
             font-size: 16px;
-            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            border-color: #007bff;
         }
 
         .account-container {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -123,6 +132,7 @@
             margin-top: 20px;
             cursor: pointer;
             text-decoration: none;
+            transition: background-color 0.3s ease;
         }
 
         .back-button:hover {
@@ -174,7 +184,7 @@
         <p id="result-text">Aqui será exibido o resultado do seu cálculo.</p>
     </div>
 
-    <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+    <a href="file:///C:/wamp64/www/LifeTools/index.html" class="back-button">Voltar</a>
 </div>
 
 <script>

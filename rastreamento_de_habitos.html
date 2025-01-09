@@ -194,6 +194,49 @@
       background-color: #e60000;
     }
 
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .habit-form input,
+      .habit-form textarea {
+        font-size: 0.9rem;
+      }
+
+      .add-habit-btn {
+        font-size: 1rem;
+        padding: 10px 18px;
+      }
+
+      .theme-toggle-btn {
+        font-size: 1rem;
+        padding: 8px 16px;
+      }
+
+      .back-btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .habit-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .checkbox-container {
+        margin-top: 10px;
+        align-self: flex-start;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -219,7 +262,7 @@
     <button class="theme-toggle-btn" onclick="toggleTheme()">Alternar Tema</button>
 
     <!-- Botão Voltar -->
-    <a href="file:///C:/OrganizePro/index.html" class="back-btn">Voltar</a>
+    <a href="file:///C:/wamp64/www/LifeTools/index.html" class="back-btn">Voltar</a>
   </div>
 
   <script>

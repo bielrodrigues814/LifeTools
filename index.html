@@ -57,6 +57,27 @@
       overflow-y: auto;
     }
 
+    .sidebar .icon {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .sidebar .icon i {
+      font-size: 50px;
+      color: #007BFF;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
     .sidebar ul {
       list-style-type: none;
     }
@@ -114,6 +135,7 @@
       }
     }
   </style>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- Tela de Boas-Vindas -->
@@ -125,6 +147,9 @@
   <div class="container">
     <!-- Menu lateral -->
     <nav class="sidebar">
+      <div class="icon">
+        <i class="fas fa-tools"></i>
+      </div>
       <ul>
         <li><a href="agenda_de_tarefas.html">Agenda de Tarefas</a></li>
         <li><a href="conversor_de_unidades.html">Conversor de Unidades</a></li>

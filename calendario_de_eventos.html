@@ -9,6 +9,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      transition: all 0.3s ease;
     }
 
     body {
@@ -19,28 +20,31 @@
       align-items: center;
       height: 100vh;
       padding: 20px;
+      color: #333;
     }
 
     .calendar-container {
       background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 900px;
       text-align: center;
+      font-size: 1.2rem;
     }
 
     h1 {
       margin-bottom: 20px;
-      color: #333;
+      color: #007bff;
+      font-size: 2rem;
     }
 
     .month-buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
+      gap: 15px;
       margin-bottom: 20px;
     }
 
@@ -50,7 +54,7 @@
       padding: 12px 20px;
       width: 90px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
       font-size: 14px;
@@ -58,23 +62,22 @@
 
     .month-buttons button:hover {
       background-color: #0056b3;
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     #calendar {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 5px;
+      gap: 10px;
       text-align: center;
       margin-top: 20px;
     }
 
     #calendar div {
       padding: 10px;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
-      color: #333;
       transition: background-color 0.3s ease;
       position: relative;
     }
@@ -114,20 +117,23 @@
     }
 
     input[type="date"] {
-      padding: 10px;
+      padding: 12px;
       margin: 10px 0;
       font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 250px;
     }
 
     button {
       background-color: #007bff;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 1rem;
     }
 
     button:hover {
@@ -135,13 +141,14 @@
     }
 
     .back-button {
-      margin-top: 20px;
-      padding: 10px 20px;
+      margin-top: 30px;
+      padding: 12px 20px;
       background-color: #28a745;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 1.2rem;
       text-decoration: none;
     }
 
@@ -152,8 +159,8 @@
     /* Media Queries for Responsiveness */
     @media (max-width: 768px) {
       .month-buttons button {
-        width: 70px;
-        padding: 10px 15px;
+        width: 80px;
+        padding: 10px;
       }
 
       #calendar {
@@ -166,7 +173,7 @@
       }
 
       h1 {
-        font-size: 22px;
+        font-size: 1.8rem;
       }
 
       .form-container input {
@@ -175,7 +182,7 @@
 
       .back-button {
         width: 100%;
-        padding: 12px;
+        padding: 15px;
       }
     }
 
@@ -191,7 +198,7 @@
       }
 
       h1 {
-        font-size: 18px;
+        font-size: 1.6rem;
       }
 
       .form-container input {
@@ -200,7 +207,7 @@
 
       .back-button {
         width: 100%;
-        padding: 12px;
+        padding: 15px;
       }
     }
   </style>
@@ -234,7 +241,7 @@
       <button onclick="setBirthday()">Marcar Aniversário</button>
     </div>
 
-    <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+    <a href="file:///C:/wamp64/www/LifeTools/index.html" class="back-button">Voltar</a>
   </div>
 
   <script>
@@ -311,12 +318,10 @@
     function setBirthday() {
       const birthdayInput = document.getElementById('birthday');
       userBirthday = birthdayInput.value;
-      generateCalendar(new Date().getMonth(), new Date().getFullYear());
+      generateCalendar(new Date(userBirthday).getMonth(), new Date(userBirthday).getFullYear());
     }
 
-    // Initialize calendar with current month and year
     generateCalendar(new Date().getMonth(), new Date().getFullYear());
   </script>
-
 </body>
 </html>

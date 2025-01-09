@@ -16,18 +16,19 @@
         }
 
         .container {
-            width: 80%;
-            max-width: 600px;
+            width: 100%;
+            max-width: 700px;
             background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
+            color: #333;
         }
 
         .container h1 {
-            color: #333;
             font-size: 28px;
+            color: #333;
             margin-bottom: 20px;
         }
 
@@ -36,11 +37,12 @@
             color: white;
             padding: 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             margin: 10px 0;
             cursor: pointer;
             width: 100%;
             font-size: 18px;
+            transition: background-color 0.3s;
         }
 
         .button:hover {
@@ -78,12 +80,34 @@
             margin-top: 20px;
             cursor: pointer;
             text-decoration: none;
+            transition: background-color 0.3s;
         }
 
         .back-button:hover {
             background-color: #0056b3;
         }
 
+        .back-button:active {
+            background-color: #004085;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .button {
+                font-size: 16px;
+            }
+
+            .container h1 {
+                font-size: 24px;
+            }
+
+            video {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -109,7 +133,7 @@
     </div>
 
     <!-- Botão Voltar -->
-    <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+    <a href="file:///C:/wamp64/www/LifeTools/index.html" class="back-button">Voltar</a>
 </div>
 
 <script>

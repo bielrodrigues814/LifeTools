@@ -75,17 +75,60 @@
         }
 
         /* Estilos responsivos */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .history-content h2 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .history-content p {
                 font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .history-content h2 {
+                font-size: 1.6rem;
+            }
+
+            .history-content p {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .btn-voltar {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            .history-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .history-content p {
+                font-size: 0.85rem;
+            }
+
+            .btn-voltar {
+                font-size: 0.9rem;
+                padding: 8px 16px;
             }
         }
     </style>
@@ -110,16 +153,27 @@
             <p>Já no século XIX, com o movimento de valorização da saúde e do bem-estar, a Educação Física se consolidou em várias partes do mundo. No Brasil, a educação física escolar foi inserida oficialmente no currículo escolar por volta de 1890, e desde então se tornou parte fundamental da formação dos estudantes.</p>
 
             <p>Hoje, a Educação Física é uma disciplina que envolve não apenas a prática de atividades físicas, mas também o desenvolvimento de habilidades motoras, o entendimento da importância de uma vida saudável e o conhecimento sobre esportes, saúde e bem-estar.</p>
+
+            <h2>Quem Inventou a Educação Física?</h2>
+            <p>A Educação Física não pode ser atribuída a um único inventor, pois ela surgiu como uma necessidade humana de promover o bem-estar físico e mental ao longo da história. Porém, alguns marcos importantes incluem a Grécia Antiga, onde os Jogos Olímpicos e a filosofia de Platão e Aristóteles influenciaram a ideia de corpo e mente equilibrados. Já no século XIX, o pedagogo alemão Friedrich Ludwig Jahn é frequentemente citado como um dos pioneiros da ginástica moderna e da educação física escolar, especialmente com seus esforços para introduzir exercícios físicos no currículo escolar europeu.</p>
+
+            <h2>O Mercado de Trabalho e Salário do Profissional de Educação Física</h2>
+            <p>Profissionais de Educação Física têm diversas opções de atuação no mercado de trabalho, incluindo escolas, academias, clubes esportivos, hospitais, empresas de consultoria, entre outros. Esses profissionais podem atuar como professores de Educação Física, treinadores, preparadores físicos, fisioterapeutas, personal trainers, e também como especialistas em nutrição e wellness.</p>
+
+            <p>O salário de um profissional de Educação Física varia conforme a experiência, a área de atuação e a localidade. Um professor de Educação Física escolar, por exemplo, pode ganhar entre R$ 2.500 e R$ 5.000 mensais, dependendo da carga horária e da instituição. Já um personal trainer pode cobrar por hora, com valores variando entre R$ 50 a R$ 150, dependendo da região e da experiência. Em áreas como fisioterapia esportiva ou preparação física de atletas, os salários podem ser mais altos, variando entre R$ 4.000 e R$ 8.000 mensais.</p>
+
+            <p>Além disso, em cargos de direção e coordenação de grandes academias ou programas de saúde pública, os profissionais podem ter salários ainda mais elevados, podendo ultrapassar os R$ 10.000 mensais em algumas situações.</p>
         </div>
 
-        <a href="file:///C:/OrganizePro/materia_escolar.html" class="btn-voltar">Voltar</a>
+        <a href="https://bielrodrigues814.github.io/LifeTools/materia_escolar.html" class="btn-voltar">Voltar</a>
     </div>
 
     <script>
         // Script para redirecionar ao clicar no botão
         const voltarBtn = document.querySelector('.btn-voltar');
         voltarBtn.addEventListener('click', function(event) {
-            window.location.href = 'file:///C:/OrganizePro/materia_escolar.html';
+            // Redirecionar para o link correto
+            window.location.href = 'https://bielrodrigues814.github.io/LifeTools/materia_escolar.html';
         });
     </script>
 

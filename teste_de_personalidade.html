@@ -14,12 +14,13 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: #333;
         }
 
         .container {
             background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             padding: 40px;
             width: 90%;
             max-width: 800px;
@@ -27,7 +28,7 @@
         }
 
         h1 {
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 20px;
             color: #4CAF50;
         }
@@ -35,11 +36,13 @@
         .question-container {
             margin-bottom: 20px;
             text-align: left;
+            transition: opacity 0.3s ease-in-out;
         }
 
         .question {
             font-size: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
             color: #333;
         }
 
@@ -54,18 +57,21 @@
             color: white;
             padding: 15px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 18px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .answer-button:hover {
             background-color: #0056b3;
+            transform: translateY(-3px);
         }
 
         .answer-button:active {
             background-color: #004085;
+            transform: translateY(1px);
         }
 
         #result-section {
@@ -75,6 +81,7 @@
             padding: 20px;
             border-radius: 10px;
             text-align: left;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
 
         .back-button {
@@ -82,11 +89,12 @@
             background-color: #28a745;
             color: white;
             padding: 12px 20px;
-            border-radius: 6px;
+            border-radius: 10px;
             font-size: 1.2em;
             margin-top: 20px;
             cursor: pointer;
             text-decoration: none;
+            transition: background-color 0.3s ease;
         }
 
         .back-button:hover {
@@ -150,8 +158,6 @@
         </div>
     </div>
 
-    <!-- Continue até a pergunta 20 -->
-    
     <div id="question20" class="question-container" style="display: none;">
         <div class="question">20. Você acredita que:</div>
         <div class="answers">
@@ -165,7 +171,7 @@
         <p id="result-text">Aguarde enquanto analisamos suas respostas...</p>
     </div>
 
-    <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+    <a href="file:///C:/wamp64/www/LifeTools/index.html" class="back-button">Voltar</a>
 </div>
 
 <script>
@@ -174,7 +180,6 @@
     function nextQuestion(answer) {
         answers.push(answer);
 
-        // Esconde a pergunta atual e mostra a próxima
         let currentQuestion = document.querySelector(`#question${answers.length}`);
         currentQuestion.style.display = 'none';
 
@@ -187,7 +192,6 @@
     }
 
     function showResult() {
-        // Esconde todas as perguntas e mostra o resultado
         const questions = document.querySelectorAll('.question-container');
         questions.forEach(q => q.style.display = 'none');
 
@@ -196,7 +200,6 @@
 
         let resultText = '';
 
-        // Analisando as respostas do usuário
         if (answers.includes('A') && answers.includes('C') && answers.includes('E') && answers.includes('G')) {
             resultText = "Você é uma pessoa analítica e cuidadosa. Prefere refletir e planejar suas ações.";
         } else if (answers.includes('B') && answers.includes('D') && answers.includes('F') && answers.includes('H')) {

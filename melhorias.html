@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar e Organizar Fotos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .container h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .category {
+            margin-bottom: 20px;
+        }
+
+        .category select, .category input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .button:hover {
+            background-color: #218838;
+        }
+
+        .file-upload-label {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .file-upload-label:hover {
+            background-color: #0069d9;
+        }
+
+        .uploaded-files {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .uploaded-files img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .file-limit-msg {
+            color: red;
+            margin-top: 20px;
+        }
+
+        .category-list {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .category-item {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+
+        .category-item:hover {
+            background-color: #e0e0e0;
+        }
+
+        .back-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+        }
+
+        .back-button:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Adicionar e Organizar Fotos</h1>
+    
+    <!-- Seção de Categorias -->
+    <div class="category">
+        <input type="text" id="category-name" placeholder="Nome da Nova Categoria">
+        <button class="button" onclick="createCategory()">Criar Categoria</button>
+    </div>
+
+    <div class="category-list" id="category-list">
+        <!-- Categorias serão listadas aqui -->
+    </div>
+
+    <div class="category">
+        <label for="file-input" class="file-upload-label">Abrir Arquivos / Galeria</label>
+        <input type="file" id="file-input" multiple accept="image/*" onchange="previewFiles()" />
+    </div>
+
+    <div class="uploaded-files" id="uploaded-files"></div>
+
+    <div class="file-limit-msg" id="file-limit-msg"></div>
+
+    <!-- Botão Voltar -->
+    <button class="back-button" onclick="goBack()">Voltar</button>
+</div>
+
+<script>
+    let categories = {};  // Armazena as categorias e as fotos associadas a cada uma
+
+    // Função para criar novas categorias
+    function createCategory() {
+        const categoryName = document.getElementById('category-name').value.trim();
+        if (categoryName === '') return alert('Digite um nome para a categoria!');
+
+        if (!categories[categoryName]) {
+            categories[categoryName] = [];
+            updateCategoryList();
+        }
+        document.getElementById('category-name').value = '';  // Limpa o campo
+    }
+
+    // Atualiza a lista de categorias
+    function updateCategoryList() {
+        const categoryList = document.getElementById('category-list');
+        categoryList.innerHTML = '';
+
+        for (const category in categories) {
+            const categoryItem = document.createElement('div');
+            categoryItem.className = 'category-item';
+            categoryItem.textContent = category;
+            categoryItem.onclick = () => selectCategory(category);
+            categoryList.appendChild(categoryItem);
+        }
+    }
+
+    // Função para selecionar uma categoria e começar a carregar fotos nela
+    function selectCategory(category) {
+        currentCategory = category;
+        document.getElementById('file-limit-msg').textContent = '';  // Limpa a mensagem de limite
+
+        // Atualiza a interface para exibir fotos dessa categoria
+        document.getElementById('uploaded-files').innerHTML = '';
+        categories[category].forEach((fileData) => {
+            const img = document.createElement('img');
+            img.src = fileData;
+            document.getElementById('uploaded-files').appendChild(img);
+        });
+    }
+
+    let currentCategory = '';
+
+    // Função que pré-visualiza as fotos selecionadas
+    function previewFiles() {
+        const fileInput = document.getElementById('file-input');
+        const files = fileInput.files;
+        if (files.length === 0 || !currentCategory) return;
+
+        // Verifica se a categoria selecionada tem limite de fotos
+        if (categories[currentCategory].length + files.length > 100) {
+            document.getElementById('file-limit-msg').textContent = 'Limite de 100 fotos por categoria alcançado!';
+            return;
+        }
+
+        // Adiciona as imagens à categoria selecionada
+        Array.from(files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const fileData = event.target.result;
+                categories[currentCategory].push(fileData);
+
+                // Atualiza a exibição das fotos
+                const img = document.createElement('img');
+                img.src = fileData;
+                document.getElementById('uploaded-files').appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    // Função para voltar à página anterior
+    function goBack() {
+        window.location.href = 'file:///C:/OrganizePro/organizador_de_fotos.html';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matérias Escolares</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .voltar-btn {
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .voltar-btn:hover {
+      background-color: #575757;
+    }
+
+    .materias-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      width: 100%;
+      margin-top: 40px;
+    }
+
+    .materia-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s ease-in-out;
+      cursor: pointer;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .materia-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .materia-card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .materia-card p {
+      font-size: 1rem;
+      color: #777;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .materia-card h2 {
+        font-size: 1rem;
+      }
+
+      .materia-card p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>Matérias Escolares</h1>
+      <a href="file:///C:/OrganizePro/index.html" class="voltar-btn">Voltar</a>
+    </div>
+
+    <div class="materias-grid">
+      <!-- História -->
+      <a href="historia.html" class="materia-card">
+        <h2>História</h2>
+        <p>Explore os eventos históricos e aprenda sobre o passado!</p>
+      </a>
+
+      <!-- Matemática -->
+      <a href="matematica.html" class="materia-card">
+        <h2>Matemática</h2>
+        <p>Descubra as maravilhas dos números e da álgebra!</p>
+      </a>
+
+      <!-- Ciências -->
+      <a href="ciencias.html" class="materia-card">
+        <h2>Ciências</h2>
+        <p>Explore o mundo das ciências naturais e experimentos!</p>
+      </a>
+
+      <!-- Geografia -->
+      <a href="geografia.html" class="materia-card">
+        <h2>Geografia</h2>
+        <p>Conheça os mapas, os continentes e as características do nosso planeta!</p>
+      </a>
+
+      <!-- Língua Portuguesa -->
+      <a href="portugues.html" class="materia-card">
+        <h2>Língua Portuguesa</h2>
+        <p>Aprofunde-se na gramática, ortografia e literatura!</p>
+      </a>
+
+      <!-- Educação Física -->
+      <a href="educacao_fisica.html" class="materia-card">
+        <h2>Educação Física</h2>
+        <p>Pratique esportes e cuide da sua saúde física!</p>
+      </a>
+
+      <!-- Artes -->
+      <a href="artes.html" class="materia-card">
+        <h2>Artes</h2>
+        <p>Desenvolva sua criatividade e aprenda técnicas artísticas!</p>
+      </a>
+
+      <!-- Inglês -->
+      <a href="ingles.html" class="materia-card">
+        <h2>Inglês</h2>
+        <p>Aprenda um dos idiomas mais falados do mundo!</p>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

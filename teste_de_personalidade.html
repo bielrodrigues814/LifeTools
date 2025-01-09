@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Personalidade</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .question-container {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .question {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .answer-button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .answer-button:hover {
+            background-color: #0056b3;
+        }
+
+        .answer-button:active {
+            background-color: #004085;
+        }
+
+        #result-section {
+            display: none;
+            margin-top: 30px;
+            background-color: #f1f3f5;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .answer-button {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Teste de Personalidade</h1>
+
+    <div id="question1" class="question-container">
+        <div class="question">1. Quando você se encontra em um novo ambiente de trabalho, você prefere:</div>
+        <div class="answers">
+            <button class="answer-button" onclick="nextQuestion('A')">Observar antes de agir</button>
+            <button class="answer-button" onclick="nextQuestion('B')">Tomar a iniciativa imediatamente</button>
+        </div>
+    </div>
+
+    <div id="question2" class="question-container" style="display: none;">
+        <div class="question">2. Quando você enfrenta um desafio complexo, sua primeira reação é:</div>
+        <div class="answers">
+            <button class="answer-button" onclick="nextQuestion('C')">Analisar todos os detalhes antes de agir</button>
+            <button class="answer-button" onclick="nextQuestion('D')">Ir direto ao ponto e tentar resolver rapidamente</button>
+        </div>
+    </div>
+
+    <div id="question3" class="question-container" style="display: none;">
+        <div class="question">3. Qual das opções descreve melhor como você toma decisões importantes?</div>
+        <div class="answers">
+            <button class="answer-button" onclick="nextQuestion('E')">Penso muito antes de tomar qualquer decisão</button>
+            <button class="answer-button" onclick="nextQuestion('F')">Tomo decisões rapidamente com base no que sinto no momento</button>
+        </div>
+    </div>
+
+    <div id="question4" class="question-container" style="display: none;">
+        <div class="question">4. Quando está trabalhando em grupo, qual é o seu papel preferido?</div>
+        <div class="answers">
+            <button class="answer-button" onclick="nextQuestion('G')">Líder, organizando e direcionando as atividades</button>
+            <button class="answer-button" onclick="nextQuestion('H')">Colaborador, preferindo seguir as ideias dos outros</button>
+        </div>
+    </div>
+
+    <div id="question5" class="question-container" style="display: none;">
+        <div class="question">5. Quando você tem um projeto para realizar, como você prefere agir?</div>
+        <div class="answers">
+            <button class="answer-button" onclick="nextQuestion('I')">Eu gosto de planejar tudo antes de começar</button>
+            <button class="answer-button" onclick="nextQuestion('J')">Eu começo a trabalhar e ajusto conforme necessário</button>
+        </div>
+    </div>
+
+    <!-- Continue até a pergunta 20 -->
+    
+    <div id="question20" class="question-container" style="display: none;">
+        <div class="question">20. Você acredita que:</div>
+        <div class="answers">
+            <button class="answer-button" onclick="nextQuestion('T')">A ação é mais importante do que o planejamento</button>
+            <button class="answer-button" onclick="nextQuestion('U')">O planejamento é essencial antes de qualquer ação</button>
+        </div>
+    </div>
+
+    <div id="result-section">
+        <h2>Resultado do Teste:</h2>
+        <p id="result-text">Aguarde enquanto analisamos suas respostas...</p>
+    </div>
+
+    <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+</div>
+
+<script>
+    let answers = [];
+
+    function nextQuestion(answer) {
+        answers.push(answer);
+
+        // Esconde a pergunta atual e mostra a próxima
+        let currentQuestion = document.querySelector(`#question${answers.length}`);
+        currentQuestion.style.display = 'none';
+
+        let nextQuestion = document.querySelector(`#question${answers.length + 1}`);
+        if (nextQuestion) {
+            nextQuestion.style.display = 'block';
+        } else {
+            showResult();
+        }
+    }
+
+    function showResult() {
+        // Esconde todas as perguntas e mostra o resultado
+        const questions = document.querySelectorAll('.question-container');
+        questions.forEach(q => q.style.display = 'none');
+
+        const resultSection = document.getElementById('result-section');
+        resultSection.style.display = 'block';
+
+        let resultText = '';
+
+        // Analisando as respostas do usuário
+        if (answers.includes('A') && answers.includes('C') && answers.includes('E') && answers.includes('G')) {
+            resultText = "Você é uma pessoa analítica e cuidadosa. Prefere refletir e planejar suas ações.";
+        } else if (answers.includes('B') && answers.includes('D') && answers.includes('F') && answers.includes('H')) {
+            resultText = "Você é uma pessoa impulsiva, prefere tomar decisões rápidas e seguir o fluxo.";
+        } else {
+            resultText = "Você é equilibrado e sabe combinar planejamento e ação de forma eficiente.";
+        }
+
+        document.getElementById('result-text').textContent = resultText;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saúde Mental - Consultoria</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #e5e5e5;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      background: linear-gradient(135deg, #f8f9fa, #ffffff);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      color: #2c3e50;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #7f8c8d;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      display: block;
+      width: 100%;
+      padding: 15px 25px;
+      background-color: #333;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #575757;
+    }
+
+    .tips-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .tip-card {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .tip-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .tip-card h3 {
+      font-size: 1.4rem;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    .tip-card p {
+      font-size: 1rem;
+      color: #7f8c8d;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .back-btn {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .tip-card h3 {
+        font-size: 1.2rem;
+      }
+
+      .tip-card p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Saúde Mental - Dicas e Consultoria</h1>
+
+    <!-- Introdução -->
+    <div class="section">
+      <h2>Como manter sua saúde mental em equilíbrio?</h2>
+      <p>A saúde mental é essencial para o bem-estar geral. O estresse, a ansiedade e outros desafios emocionais podem afetar nossa qualidade de vida. No entanto, é possível adotar hábitos e técnicas que ajudam a manter a mente saudável e tranquila. Aqui estão algumas dicas para você cuidar de sua saúde mental.</p>
+    </div>
+
+    <!-- Dicas de Saúde Mental -->
+    <div class="section">
+      <h2>5 Dicas para Cuidar da Sua Saúde Mental</h2>
+      <div class="tips-container">
+        <div class="tip-card">
+          <h3>Meditação e Mindfulness</h3>
+          <p>A prática de meditação ajuda a reduzir o estresse e a melhorar a concentração. A mindfulness, ou atenção plena, é uma técnica eficaz para lidar com pensamentos ansiosos.</p>
+        </div>
+        <div class="tip-card">
+          <h3>Exercícios Físicos</h3>
+          <p>O exercício físico regular libera endorfinas, que são hormônios que ajudam a melhorar o humor e reduzem os sintomas de ansiedade e depressão.</p>
+        </div>
+        <div class="tip-card">
+          <h3>Converse com Alguém</h3>
+          <p>Conversar com amigos, familiares ou um profissional de saúde mental pode ajudar a aliviar o estresse e proporcionar uma sensação de alívio e apoio emocional.</p>
+        </div>
+        <div class="tip-card">
+          <h3>Alimentação Balanceada</h3>
+          <p>Uma alimentação saudável também impacta sua saúde mental. Alimentos ricos em ômega-3 e vitaminas podem ajudar a reduzir os sintomas de depressão e ansiedade.</p>
+        </div>
+        <div class="tip-card">
+          <h3>Estabeleça Limites</h3>
+          <p>Aprender a dizer não e estabelecer limites saudáveis é essencial para evitar o esgotamento e proteger sua saúde emocional.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botão Voltar -->
+    <a href="file:///C:/OrganizePro/consultoria_de_bem_estar.html" class="back-btn">Voltar para Consultoria de Bem-estar</a>
+  </div>
+
+</body>
+</html>

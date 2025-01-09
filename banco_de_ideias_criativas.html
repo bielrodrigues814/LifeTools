@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Ideias Criativas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 700px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .input-area {
+            margin-bottom: 20px;
+        }
+
+        .input-area textarea {
+            width: 100%;
+            height: 120px;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            resize: none;
+            outline: none;
+        }
+
+        .button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .button:hover {
+            background-color: #218838;
+        }
+
+        .button:active {
+            background-color: #1e7e34;
+        }
+
+        .ideas-container {
+            margin-top: 30px;
+        }
+
+        .idea {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #28a745;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Banco de Ideias Criativas</h1>
+
+    <div class="input-area">
+        <textarea id="userIdea" placeholder="Digite sua ideia..."></textarea>
+    </div>
+
+    <button class="button" onclick="generateIdeas()">Gerar Ideias</button>
+
+    <div class="ideas-container" id="ideasContainer">
+        <!-- As ideias geradas aparecerão aqui -->
+    </div>
+
+    <!-- Botão Voltar -->
+    <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+</div>
+
+<script>
+    // Função simulada para gerar ideias melhores com base na ideia do usuário
+    function generateIdeas() {
+        const userIdea = document.getElementById('userIdea').value.trim();
+
+        if (userIdea === "") {
+            alert("Por favor, insira sua ideia antes de gerar sugestões.");
+            return;
+        }
+
+        // Simulando o comportamento de uma IA gerando ideias mais criativas
+        const ideas = [
+            "Transforme sua ideia em um produto sustentável com impacto social positivo.",
+            "Aplique sua ideia em uma plataforma digital para alcançar uma audiência global.",
+            "Incorpore a ideia em um projeto colaborativo de rede social com funcionalidades inovadoras.",
+            "Revise a ideia para integrar tecnologias emergentes como IA ou Blockchain.",
+            "Crie uma solução híbrida entre o físico e o digital que ofereça experiências imersivas.",
+            "Explore parcerias com influencers para expandir a visibilidade da sua ideia.",
+            "Proponha a ideia como uma solução para um problema específico de uma comunidade.",
+            "Use design de interface (UI/UX) inovador para aumentar a interação do usuário."
+        ];
+
+        // Gerar um número aleatório de 3 ideias a partir da lista
+        const generatedIdeas = [];
+        const randomIndexes = [];
+        
+        while (generatedIdeas.length < 3) {
+            const index = Math.floor(Math.random() * ideas.length);
+            if (!randomIndexes.includes(index)) {
+                randomIndexes.push(index);
+                generatedIdeas.push(ideas[index]);
+            }
+        }
+
+        // Exibir as ideias geradas na interface
+        const ideasContainer = document.getElementById('ideasContainer');
+        ideasContainer.innerHTML = '';
+
+        generatedIdeas.forEach(idea => {
+            const ideaElement = document.createElement('div');
+            ideaElement.classList.add('idea');
+            ideaElement.textContent = idea;
+            ideasContainer.appendChild(ideaElement);
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeTools - Seu App do Dia a Dia</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .welcome-screen img {
+      max-width: 50%;
+      height: auto;
+    }
+
+    .container {
+      display: none; /* Oculto inicialmente */
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      position: fixed;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+    }
+
+    .sidebar li {
+      margin: 15px 0;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: block;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+      padding-left: 10px;
+    }
+
+    .image-container {
+      flex: 1;
+      background-image: url('https://png.pngtree.com/element_pic/16/11/07/6de0f989fea69c221d8f2dbd6bf821c3.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-left: 250px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 200px;
+      }
+
+      .sidebar a {
+        font-size: 16px;
+      }
+
+      .image-container {
+        margin-left: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Tela de Boas-Vindas -->
+  <div class="welcome-screen">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5Nz5CfJummB1spFB-Pn0ctuiQ0F_pr0ahbg&s" alt="Bem-vindo ao LifeTools">
+  </div>
+
+  <!-- Interface principal -->
+  <div class="container">
+    <!-- Menu lateral -->
+    <nav class="sidebar">
+      <ul>
+        <li><a href="agenda_de_tarefas.html">Agenda de Tarefas</a></li>
+        <li><a href="conversor_de_unidades.html">Conversor de Unidades</a></li>
+        <li><a href="calculadora.html">Calculadora Simples</a></li>
+        <li><a href="lista_de_compras.html">Lista de Compras</a></li>
+        <li><a href="rastreamento_de_habitos.html">Rastreamento de Hábitos</a></li>
+        <li><a href="dicionario_pessoal.html">Dicionário Pessoal</a></li>
+        <li><a href="planejador_de_refeicoes.html">Planejador de Refeições</a></li>
+        <li><a href="verificador_de_senhas.html">Verificador de Senhas</a></li>
+        <li><a href="contador_de_calorias.html">Contador de Calorias</a></li>
+        <li><a href="calendario_de_eventos.html">Calendário de Eventos</a></li>
+        <li><a href="organizador_de_receitas.html">Organizador de Receitas</a></li>
+        <li><a href="consultoria_de_bem_estar.html">Consultoria de Bem-estar</a></li>
+        <li><a href="calculo_imc.html">Cálculo de IMC</a></li>
+        <li><a href="organizador_de_fotos.html">Organizador de Fotos e Memórias</a></li>
+        <li><a href="banco_de_ideias_criativas.html">Banco de Ideias Criativas</a></li>
+        <li><a href="organizador_de_tarefas_de_casa.html">Organizador de Tarefas de Casa</a></li>
+        <li><a href="teste_de_personalidade.html">Testes de Personalidade</a></li>
+        <li><a href="calculadora_financeira.html">Calculadora Financeira</a></li>
+        <li><a href="materia_escolar.html">Matéria Escolar</a></li>
+        <li><a href="tabuada.html">Tabuada</a></li>
+      </ul>
+    </nav>
+
+    <!-- Imagem Fixa -->
+    <div class="image-container"></div>
+  </div>
+
+  <script>
+    // Aguarda 4 segundos antes de exibir a interface original
+    setTimeout(() => {
+      document.querySelector('.welcome-screen').style.display = 'none';
+      document.querySelector('.container').style.display = 'flex';
+    }, 4000); // 4000ms = 4 segundos
+  </script>
+</body>
+</html>

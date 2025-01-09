@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Inteligente e Moderna</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #6e7bff, #00c6ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      flex-direction: column;
+      transition: background 0.3s ease;
+    }
+
+    .calculator {
+      width: 320px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .display {
+      width: 100%;
+      background-color: #333;
+      color: white;
+      font-size: 2rem;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: right;
+      box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .buttons {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .button {
+      background-color: #444;
+      color: white;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.1s;
+    }
+
+    .button:hover {
+      background-color: #00c6ff;
+      transform: scale(1.1);
+    }
+
+    .button:active {
+      transform: scale(0.95);
+    }
+
+    .equal {
+      background-color: #6e7bff;
+      color: white;
+    }
+
+    .clear {
+      background-color: #ff4b5c;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    /* Botão de Voltar */
+    .back-button {
+      width: 200px;
+      padding: 15px;
+      margin-top: 30px;
+      background-color: #ff4b5c;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+
+    .back-button:hover {
+      background-color: #d43f47;
+      transform: scale(1.05);
+    }
+
+    .back-button:active {
+      transform: scale(0.95);
+    }
+
+    /* Estilo do histórico */
+    .history {
+      background-color: #f4f4f4;
+      border-radius: 12px;
+      padding: 10px;
+      margin-top: 20px;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .history-item {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+
+    /* Estilo para alternar entre modos */
+    .theme-toggle {
+      background-color: #00c6ff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background-color: #0099cc;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <button class="button clear" onclick="clearDisplay()">C</button>
+      <button class="button" onclick="appendToDisplay('(')">(</button>
+      <button class="button" onclick="appendToDisplay(')')">)</button>
+      <button class="button" onclick="appendToDisplay('/')">/</button>
+
+      <button class="button" onclick="appendToDisplay('7')">7</button>
+      <button class="button" onclick="appendToDisplay('8')">8</button>
+      <button class="button" onclick="appendToDisplay('9')">9</button>
+      <button class="button" onclick="appendToDisplay('*')">*</button>
+
+      <button class="button" onclick="appendToDisplay('4')">4</button>
+      <button class="button" onclick="appendToDisplay('5')">5</button>
+      <button class="button" onclick="appendToDisplay('6')">6</button>
+      <button class="button" onclick="appendToDisplay('-')">-</button>
+
+      <button class="button" onclick="appendToDisplay('1')">1</button>
+      <button class="button" onclick="appendToDisplay('2')">2</button>
+      <button class="button" onclick="appendToDisplay('3')">3</button>
+      <button class="button" onclick="appendToDisplay('+')">+</button>
+
+      <button class="button" onclick="appendToDisplay('0')">0</button>
+      <button class="button" onclick="appendToDisplay('.')">.</button>
+      <button class="button equal" onclick="calculate()">=</button>
+    </div>
+
+    <!-- Botão para alternar tema -->
+    <button class="theme-toggle" onclick="toggleTheme()">Alternar Tema</button>
+
+    <!-- Histórico de cálculos -->
+    <div class="history" id="history">
+      <h3>Histórico:</h3>
+      <div id="historyList"></div>
+    </div>
+  </div>
+
+  <!-- Botão Voltar -->
+  <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+
+  <script>
+    let currentExpression = '';
+    let history = [];
+
+    // Função para adicionar números e operadores na tela
+    function appendToDisplay(value) {
+      currentExpression += value;
+      document.getElementById("display").textContent = currentExpression;
+    }
+
+    // Função para limpar a tela
+    function clearDisplay() {
+      currentExpression = '';
+      document.getElementById("display").textContent = '0';
+    }
+
+    // Função para calcular a expressão
+    function calculate() {
+      try {
+        const result = eval(currentExpression).toString();
+        document.getElementById("display").textContent = result;
+        history.push(`${currentExpression} = ${result}`);
+        updateHistory();
+        currentExpression = '';
+      } catch (error) {
+        document.getElementById("display").textContent = 'Erro';
+        currentExpression = '';
+      }
+    }
+
+    // Função para atualizar o histórico
+    function updateHistory() {
+      const historyList = document.getElementById("historyList");
+      historyList.innerHTML = '';
+      history.forEach(item => {
+        const div = document.createElement('div');
+        div.classList.add('history-item');
+        div.textContent = item;
+        historyList.appendChild(div);
+      });
+    }
+
+    // Função para alternar o tema
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      if (document.body.classList.contains('dark-mode')) {
+        document.body.style.background = 'linear-gradient(135deg, #1a1a2e, #162447)';
+      } else {
+        document.body.style.background = 'linear-gradient(135deg, #6e7bff, #00c6ff)';
+      }
+    }
+  </script>
+
+</body>
+</html>

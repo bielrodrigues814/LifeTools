@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dicas de Treinamento</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      background: linear-gradient(135deg, #ffffff, #f2f2f2);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.5rem;
+      color: #2c3e50;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #7f8c8d;
+    }
+
+    .tips-list {
+      list-style-type: none;
+      padding-left: 0;
+      font-size: 1.1rem;
+      color: #7f8c8d;
+    }
+
+    .tips-list li {
+      margin-bottom: 15px;
+      padding-left: 15px;
+      position: relative;
+    }
+
+    .tips-list li::before {
+      content: '✔';
+      position: absolute;
+      left: 0;
+      color: #27ae60;
+      font-size: 1.5rem;
+    }
+
+    .cta-button {
+      display: block;
+      width: 100%;
+      padding: 15px 25px;
+      background-color: #007bff;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #0056b3;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      display: block;
+      width: 100%;
+      padding: 15px 25px;
+      background-color: #333;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background-color: #575757;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .cta-button,
+      .back-btn {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section p,
+      .tips-list {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Dicas de Treinamento: Não Passe dos Limites!</h1>
+
+    <!-- Introdução -->
+    <div class="section">
+      <h2>Por que é importante não passar dos limites?</h2>
+      <p>Quando você treina de maneira excessiva ou sem a técnica correta, pode colocar seu corpo em risco de lesões e sobrecarga muscular. É fundamental ouvir o seu corpo e respeitar seus limites para garantir que o progresso seja sustentável e saudável. Aqui estão algumas dicas para ajudá-lo a treinar de forma segura e eficaz:</p>
+    </div>
+
+    <!-- Dicas de Treinamento -->
+    <div class="section">
+      <h2>Principais Dicas</h2>
+      <ul class="tips-list">
+        <li>🛑 <strong>Respeite os seus limites:</strong> Sempre escute o seu corpo. Se você sentir dor ou desconforto excessivo, diminua a intensidade ou faça uma pausa.</li>
+        <li>🕒 <strong>Equilibre os treinos:</strong> Não treine a mesma parte do corpo todos os dias. Dê tempo para os músculos se recuperarem adequadamente.</li>
+        <li>💪 <strong>Aqueça antes de treinar:</strong> Faça um aquecimento adequado para preparar os músculos e evitar lesões.</li>
+        <li>🚰 <strong>Mantenha-se hidratado:</strong> Beba água regularmente durante os treinos para manter o corpo hidratado e otimizar o desempenho.</li>
+        <li>💤 <strong>Durma bem:</strong> O descanso é essencial para a recuperação muscular e para evitar o overtraining. Durma de 7 a 9 horas por noite.</li>
+        <li>🧘‍♀️ <strong>Varie os treinos:</strong> Alterne entre diferentes tipos de exercícios para evitar a fadiga mental e física, e garantir um treino equilibrado.</li>
+        <li>👨‍⚕️ <strong>Consultoria profissional:</strong> Considere ter um profissional de saúde ou um treinador pessoal para orientá-lo em seu plano de treinamento.</li>
+      </ul>
+    </div>
+
+    <!-- Botão para mais informações -->
+    <div class="section">
+      <button class="cta-button" onclick="window.location.href='file:///C:/OrganizePro/consultoria_contato.html'">Obter mais informações sobre Consultoria</button>
+    </div>
+
+    <!-- Botão Voltar -->
+    <a href="file:///C:/OrganizePro/consultoria_de_bem_estar.html" class="back-btn">Voltar para Consultoria de Bem-estar</a>
+  </div>
+
+</body>
+</html>

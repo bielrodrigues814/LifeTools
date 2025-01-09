@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendário de Eventos - LifeTools</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .calendar-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .month-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .month-buttons button {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 20px;
+      width: 90px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-size: 14px;
+    }
+
+    .month-buttons button:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+
+    #calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #calendar div {
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #333;
+      transition: background-color 0.3s ease;
+      position: relative;
+    }
+
+    #calendar .header {
+      font-weight: bold;
+      background-color: #f2f2f2;
+    }
+
+    #calendar .weekend {
+      background-color: #f8d7da;
+    }
+
+    .highlight {
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+    }
+
+    .anniversary {
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+    }
+
+    .holiday-name {
+      font-size: 10px;
+      color: #888;
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+    }
+
+    .form-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    input[type="date"] {
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .back-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background-color: #218838;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      .month-buttons button {
+        width: 70px;
+        padding: 10px 15px;
+      }
+
+      #calendar {
+        grid-template-columns: repeat(7, 1fr);
+      }
+
+      #calendar div {
+        font-size: 14px;
+        padding: 8px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      .form-container input {
+        width: 100%;
+      }
+
+      .back-button {
+        width: 100%;
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .month-buttons button {
+        width: 60px;
+        padding: 8px 12px;
+      }
+
+      #calendar div {
+        font-size: 12px;
+        padding: 6px;
+      }
+
+      h1 {
+        font-size: 18px;
+      }
+
+      .form-container input {
+        width: 100%;
+      }
+
+      .back-button {
+        width: 100%;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calendar-container">
+    <h1>Calendário de Eventos</h1>
+
+    <!-- Botões para selecionar o mês -->
+    <div class="month-buttons">
+      <button onclick="generateCalendar(0)">Jan</button>
+      <button onclick="generateCalendar(1)">Feb</button>
+      <button onclick="generateCalendar(2)">Mar</button>
+      <button onclick="generateCalendar(3)">Abr</button>
+      <button onclick="generateCalendar(4)">Mai</button>
+      <button onclick="generateCalendar(5)">Jun</button>
+      <button onclick="generateCalendar(6)">Jul</button>
+      <button onclick="generateCalendar(7)">Ago</button>
+      <button onclick="generateCalendar(8)">Set</button>
+      <button onclick="generateCalendar(9)">Out</button>
+      <button onclick="generateCalendar(10)">Nov</button>
+      <button onclick="generateCalendar(11)">Dez</button>
+    </div>
+
+    <div id="calendar"></div>
+
+    <div class="form-container">
+      <label for="birthday">Defina seu Aniversário:</label>
+      <input type="date" id="birthday" name="birthday">
+      <button onclick="setBirthday()">Marcar Aniversário</button>
+    </div>
+
+    <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+  </div>
+
+  <script>
+    const holidays = [
+      { date: '2025-01-01', name: 'Ano Novo' },
+      { date: '2025-04-21', name: 'Tiradentes' },
+      { date: '2025-05-01', name: 'Dia do Trabalho' },
+      { date: '2025-09-07', name: 'Independência do Brasil' },
+      { date: '2025-12-25', name: 'Natal' },
+    ];
+
+    const calendarContainer = document.getElementById('calendar');
+    let userBirthday = null;
+
+    function generateCalendar(month, year = new Date().getFullYear()) {
+      calendarContainer.innerHTML = '';
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const totalDays = lastDay.getDate();
+
+      const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+      const currentMonthName = monthNames[month];
+
+      // Display the month name at the top
+      const monthNameElement = document.createElement('div');
+      monthNameElement.style.fontSize = '24px';
+      monthNameElement.style.fontWeight = 'bold';
+      monthNameElement.style.marginBottom = '10px';
+      monthNameElement.textContent = currentMonthName;
+      calendarContainer.appendChild(monthNameElement);
+
+      const headerDays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+
+      // Create headers (days of the week)
+      headerDays.forEach(day => {
+        const header = document.createElement('div');
+        header.classList.add('header');
+        header.textContent = day;
+        calendarContainer.appendChild(header);
+      });
+
+      // Create the days of the month
+      for (let i = 1; i <= totalDays; i++) {
+        const dayDate = new Date(year, month, i);
+        const dayElement = document.createElement('div');
+        const dayString = dayDate.toISOString().split('T')[0];
+
+        // Check if it's a holiday
+        const holiday = holidays.find(holiday => holiday.date === dayString);
+        if (holiday) {
+          dayElement.classList.add('anniversary');
+          const holidayName = document.createElement('span');
+          holidayName.classList.add('holiday-name');
+          holidayName.textContent = holiday.name;
+          dayElement.appendChild(holidayName);
+        }
+
+        // Check if it's the user's birthday
+        if (userBirthday && dayDate.getDate() === new Date(userBirthday).getDate() && dayDate.getMonth() === new Date(userBirthday).getMonth()) {
+          dayElement.classList.add('anniversary');
+        }
+
+        // Highlight today's date
+        const today = new Date();
+        if (today.getDate() === i && today.getMonth() === month && today.getFullYear() === year) {
+          dayElement.classList.add('highlight');
+        }
+
+        dayElement.textContent = i;
+        calendarContainer.appendChild(dayElement);
+      }
+    }
+
+    function setBirthday() {
+      const birthdayInput = document.getElementById('birthday');
+      userBirthday = birthdayInput.value;
+      generateCalendar(new Date().getMonth(), new Date().getFullYear());
+    }
+
+    // Initialize calendar with current month and year
+    generateCalendar(new Date().getMonth(), new Date().getFullYear());
+  </script>
+
+</body>
+</html>

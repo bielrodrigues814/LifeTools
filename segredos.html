@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segredos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #4CAF50;
+        }
+
+        header p {
+            color: #888;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .segredo-form, .visualizar-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 1em;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        textarea, input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+
+        .secret-display {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            margin-top: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #007B9A;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Guarde seus segredos</h1>
+            <p>Proteja seus segredos com uma senha única.</p>
+        </header>
+
+        <div class="segredo-form">
+            <h2>Criar novo segredo</h2>
+            <form id="secretForm">
+                <label for="secret">Seu segredo:</label>
+                <textarea id="secret" required placeholder="Escreva seu segredo aqui..."></textarea>
+                
+                <label for="password">Senha para proteger:</label>
+                <input type="password" id="password" required placeholder="Digite uma senha...">
+                
+                <button type="submit">Salvar Segredo</button>
+            </form>
+        </div>
+
+        <div class="visualizar-form">
+            <h2>Visualizar segredo</h2>
+            <form id="viewForm">
+                <label for="viewPassword">Digite a senha para visualizar:</label>
+                <input type="password" id="viewPassword" required placeholder="Digite a senha...">
+                
+                <button type="submit">Ver Segredo</button>
+            </form>
+            <div id="secretDisplay" class="secret-display"></div>
+        </div>
+
+        <button class="back-button" onclick="window.location.href='file:///C:/OrganizePro/organizador_de_fotos.html'">Voltar</button>
+    </div>
+
+    <script>
+        // Armazenamento em memória do segredo e senha
+        let secret = '';
+        let secretPassword = '';
+
+        // Função para criar um segredo
+        document.getElementById('secretForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const secretText = document.getElementById('secret').value;
+            const password = document.getElementById('password').value;
+            
+            if (secretText && password) {
+                secret = secretText;
+                secretPassword = password;
+                alert("Segredo salvo com sucesso!");
+                document.getElementById('secretForm').reset();
+            } else {
+                alert("Por favor, preencha todos os campos.");
+            }
+        });
+
+        // Função para visualizar o segredo
+        document.getElementById('viewForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const passwordAttempt = document.getElementById('viewPassword').value;
+            
+            if (passwordAttempt === secretPassword) {
+                document.getElementById('secretDisplay').textContent = secret;
+                document.getElementById('secretDisplay').style.display = 'block';
+            } else {
+                alert("Senha incorreta. Tente novamente.");
+            }
+        });
+    </script>
+
+</body>
+</html>

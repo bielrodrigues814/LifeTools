@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A História da Língua Inglesa</title>
+    <style>
+        /* Resetando margens e paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #34495e;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .history-content {
+            margin-top: 20px;
+        }
+
+        .history-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+
+        .history-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn-voltar:hover {
+            background-color: #c0392b;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .history-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .history-content p {
+                font-size: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>A História da Língua Inglesa</h1>
+    </header>
+
+    <div class="container">
+        <div class="history-content">
+            <h2>Origem e Evolução da Língua Inglesa</h2>
+            <p>A língua inglesa tem suas origens no século V, quando tribos germânicas, como os anglos, saxões e jutos, invadiram a Grã-Bretanha. Elas trouxeram com elas suas próprias línguas germânicas, que deram origem ao antigo inglês. O inglês antigo era bastante diferente do inglês moderno, com uma gramática complexa e um vocabulário influenciado principalmente pelas línguas germânicas.</p>
+
+            <p>No entanto, a maior mudança no inglês ocorreu após a invasão normanda de 1066. Os normandos, que falavam uma forma de francês, impuseram o idioma na corte e nas instituições governamentais, o que resultou em uma grande quantidade de palavras francesas sendo incorporadas ao vocabulário inglês. Esse período é conhecido como inglês médio.</p>
+
+            <p>Com o tempo, o inglês médio se desenvolveu, especialmente após a Peste Negra, que reduziu drasticamente a população da Inglaterra e alterou as estruturas sociais. O inglês moderno começou a surgir entre os séculos XV e XVII, com grandes mudanças na fonologia e na gramática, bem como o aumento da produção literária em inglês, incluindo as obras de William Shakespeare e a tradução da Bíblia para o inglês.</p>
+
+            <p>O inglês moderno, como o conhecemos hoje, começou a se solidificar durante a Revolução Industrial, quando o inglês se espalhou pelo mundo devido à expansão do Império Britânico. O idioma se tornou a língua franca de muitas nações, especialmente nas áreas de ciência, comércio e diplomacia.</p>
+
+            <p>Hoje, o inglês é uma das línguas mais faladas no mundo, com mais de 1,5 bilhão de falantes, sendo falado em muitos países como língua nativa, segunda língua e língua franca em todo o mundo.</p>
+        </div>
+
+        <a href="file:///C:/OrganizePro/materia_escolar.html" class="btn-voltar">Voltar</a>
+    </div>
+
+    <script>
+        // Script para redirecionar ao clicar no botão
+        const voltarBtn = document.querySelector('.btn-voltar');
+        voltarBtn.addEventListener('click', function(event) {
+            window.location.href = 'file:///C:/OrganizePro/materia_escolar.html';
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A História da Língua Portuguesa</title>
+    <style>
+        /* Resetando algumas configurações padrão */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .history-content {
+            margin-top: 20px;
+        }
+        .history-content h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .history-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .btn-voltar {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .btn-voltar:hover {
+            background-color: #218838;
+        }
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .history-content h2 {
+                font-size: 1.5rem;
+            }
+            .history-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>A História da Língua Portuguesa</h1>
+    </header>
+
+    <div class="container">
+        <div class="history-content">
+            <h2>Origem e Evolução da Língua Portuguesa</h2>
+            <p>A língua portuguesa originou-se do latim vulgar, falado no Império Romano. No século V, com a queda do Império Romano, a Península Ibérica foi invadida por povos germânicos, que contribuíram com algumas palavras, mas a base do idioma continuou a ser o latim.</p>
+
+            <p>Ao longo dos séculos, o português foi se diferenciando do latim, com influências de outros idiomas, como o árabe, após a invasão muçulmana na Península Ibérica, e o galego, que ajudou a moldar o que hoje conhecemos como português.</p>
+
+            <p>O português começou a se consolidar como língua distinta no século XII, quando o Reino de Portugal foi formado. No século XVI, com as grandes navegações, o idioma se espalhou por outros continentes, incluindo o Brasil, África e Ásia, dando origem a diversas variantes.</p>
+
+            <p>Hoje, o português é a língua oficial de vários países, sendo uma das mais faladas do mundo, com mais de 260 milhões de falantes.</p>
+        </div>
+
+        <a href="file:///C:/OrganizePro/materia_escolar.html" class="btn-voltar">Voltar</a>
+    </div>
+
+    <script>
+        // Função para retornar à página anterior ao clicar no botão
+        const voltarBtn = document.querySelector('.btn-voltar');
+        voltarBtn.addEventListener('click', function(event) {
+            window.location.href = 'file:///C:/OrganizePro/materia_escolar.html';
+        });
+    </script>
+
+</body>
+</html>

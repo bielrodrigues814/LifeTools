@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Histórias</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #fff;
+            width: 80%;
+            max-width: 900px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .container h1 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .story-form {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .story-form input, .story-form textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            resize: vertical;
+        }
+
+        .story-form input {
+            height: 50px;
+        }
+
+        .story-form textarea {
+            min-height: 150px;
+            max-height: 300px;
+        }
+
+        .add-story-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .add-story-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .stories-list {
+            width: 100%;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .story-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .story-item h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .story-item p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .back-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .back-button:hover {
+            background-color: #218838;
+        }
+
+        .message {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .add-story-btn, .back-button {
+                font-size: 16px;
+                padding: 12px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Adicionar Histórias</h1>
+
+    <!-- Formulário para Adicionar História -->
+    <div class="story-form">
+        <input type="text" id="story-title" placeholder="Título da História" />
+        <textarea id="story-content" placeholder="Escreva sua história aqui..."></textarea>
+        <button class="add-story-btn" onclick="addStory()">Adicionar História</button>
+    </div>
+
+    <!-- Mensagem de Sucesso -->
+    <div id="message" class="message">História adicionada com sucesso!</div>
+
+    <!-- Lista de Histórias -->
+    <div class="stories-list" id="stories-list">
+        <!-- As histórias adicionadas serão exibidas aqui -->
+    </div>
+
+    <!-- Botão de Voltar -->
+    <button class="back-button" onclick="goBack()">Voltar</button>
+</div>
+
+<script>
+    // Função para adicionar uma nova história
+    function addStory() {
+        const title = document.getElementById('story-title').value.trim();
+        const content = document.getElementById('story-content').value.trim();
+
+        if (title === '' || content === '') {
+            alert('Por favor, preencha o título e o conteúdo da história!');
+            return;
+        }
+
+        // Cria o elemento da história
+        const storyItem = document.createElement('div');
+        storyItem.classList.add('story-item');
+
+        const storyTitle = document.createElement('h3');
+        storyTitle.textContent = title;
+        storyItem.appendChild(storyTitle);
+
+        const storyContent = document.createElement('p');
+        storyContent.textContent = content;
+        storyItem.appendChild(storyContent);
+
+        // Adiciona a história na lista
+        document.getElementById('stories-list').appendChild(storyItem);
+
+        // Exibe a mensagem de sucesso
+        showSuccessMessage();
+
+        // Limpa os campos
+        document.getElementById('story-title').value = '';
+        document.getElementById('story-content').value = '';
+    }
+
+    // Função para mostrar a mensagem de sucesso
+    function showSuccessMessage() {
+        const message = document.getElementById('message');
+        message.style.display = 'block';
+        setTimeout(() => {
+            message.style.display = 'none';
+        }, 3000);
+    }
+
+    // Função para voltar à página anterior
+    function goBack() {
+        window.location.href = 'file:///C:/OrganizePro/organizador_de_fotos.html';
+    }
+
+    // Função para visualizar e editar uma história ao clicar no título
+    document.getElementById('stories-list').addEventListener('click', function(event) {
+        const storyItem = event.target.closest('.story-item');
+        if (!storyItem) return;
+
+        const title = storyItem.querySelector('h3').textContent;
+        const content = storyItem.querySelector('p').textContent;
+
+        // Preenche os campos com o conteúdo da história para edição
+        document.getElementById('story-title').value = title;
+        document.getElementById('story-content').value = content;
+
+        // Remove a história da lista
+        storyItem.remove();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Arquivos e Pastas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #4CAF50;
+        }
+
+        header p {
+            color: #777;
+            font-size: 1.2em;
+        }
+
+        .file-upload-section, .folder-upload-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .file-upload-section h2, .folder-upload-section h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .upload-btn {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.2em;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background-color: #45a049;
+        }
+
+        input[type="file"], input[type="text"] {
+            display: none;
+        }
+
+        .file-display, .folder-display {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .file-display h3, .folder-display h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .file-list, .folder-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .file-list li, .folder-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-list li span, .folder-list li span {
+            font-size: 1em;
+            color: #555;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #008CBA;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            margin-top: 30px;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #007B9A;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 100%;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .upload-btn {
+                font-size: 1.1em;
+                padding: 15px 30px;
+            }
+
+            .file-display, .folder-display {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>App de Arquivos e Pastas</h1>
+            <p>Adicione, organize e visualize seus arquivos e pastas facilmente!</p>
+        </header>
+
+        <div class="file-upload-section">
+            <h2>Adicionar Arquivos</h2>
+            <label for="file-input" class="upload-btn">Escolher Arquivos</label>
+            <input type="file" id="file-input" multiple>
+        </div>
+
+        <div class="folder-upload-section">
+            <h2>Adicionar Pastas</h2>
+            <label for="folder-name" class="upload-btn">Criar Nova Pasta</label>
+            <input type="text" id="folder-name" placeholder="Nome da Pasta">
+        </div>
+
+        <div class="file-display" id="file-display" style="display:none;">
+            <h3>Arquivos Selecionados:</h3>
+            <ul id="file-list" class="file-list"></ul>
+        </div>
+
+        <div class="folder-display" id="folder-display" style="display:none;">
+            <h3>Pastas Criadas:</h3>
+            <ul id="folder-list" class="folder-list"></ul>
+        </div>
+
+        <a href="file:///C:/OrganizePro/organizador_de_fotos.html" class="back-button">Voltar</a>
+    </div>
+
+    <script>
+        // Selecionando elementos
+        const fileInput = document.getElementById('file-input');
+        const folderNameInput = document.getElementById('folder-name');
+        const fileDisplay = document.getElementById('file-display');
+        const folderDisplay = document.getElementById('folder-display');
+        const fileList = document.getElementById('file-list');
+        const folderList = document.getElementById('folder-list');
+
+        // Função para salvar arquivos no localStorage
+        const saveFilesToLocalStorage = (files) => {
+            let existingFiles = JSON.parse(localStorage.getItem('files')) || [];
+            if (existingFiles.length + files.length <= 300) {
+                files.forEach(file => {
+                    existingFiles.push(file);
+                });
+                localStorage.setItem('files', JSON.stringify(existingFiles));
+                displayFiles(existingFiles);
+            } else {
+                alert('Limite de 300 arquivos atingido!');
+            }
+        };
+
+        // Função para salvar pastas no localStorage
+        const saveFolderToLocalStorage = (folderName) => {
+            let existingFolders = JSON.parse(localStorage.getItem('folders')) || [];
+            if (existingFolders.length < 20) {
+                existingFolders.push(folderName);
+                localStorage.setItem('folders', JSON.stringify(existingFolders));
+                displayFolders(existingFolders);
+            } else {
+                alert('Limite de 20 pastas atingido!');
+            }
+        };
+
+        // Função para exibir arquivos armazenados
+        const displayFiles = (files) => {
+            fileDisplay.style.display = 'block';
+            fileList.innerHTML = '';
+            files.forEach(file => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${file.name}</span><span>${(file.size / 1024).toFixed(2)} KB</span>`;
+                fileList.appendChild(li);
+            });
+        };
+
+        // Função para exibir pastas armazenadas
+        const displayFolders = (folders) => {
+            folderDisplay.style.display = 'block';
+            folderList.innerHTML = '';
+            folders.forEach(folder => {
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${folder}</span>`;
+                folderList.appendChild(li);
+            });
+        };
+
+        // Carregar arquivos e pastas ao carregar a página
+        window.onload = () => {
+            const savedFiles = JSON.parse(localStorage.getItem('files')) || [];
+            const savedFolders = JSON.parse(localStorage.getItem('folders')) || [];
+            displayFiles(savedFiles);
+            displayFolders(savedFolders);
+        };
+
+        // Adicionar arquivos
+        fileInput.addEventListener('change', function(event) {
+            const files = event.target.files;
+            if (files.length > 0) {
+                saveFilesToLocalStorage(Array.from(files));
+            }
+        });
+
+        // Criar pasta
+        folderNameInput.addEventListener('blur', function() {
+            const folderName = folderNameInput.value.trim();
+            if (folderName) {
+                saveFolderToLocalStorage(folderName);
+                folderNameInput.value = ''; // Limpar o campo
+            }
+        });
+    </script>
+
+</body>
+</html>

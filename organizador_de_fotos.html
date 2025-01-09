@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador de Fotos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .container h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .button:hover {
+            background-color: #218838;
+        }
+
+        .button:active {
+            background-color: #1e7e34;
+        }
+
+        .camera-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        video {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+        }
+
+        .actions {
+            margin-top: 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Organizador de Fotos e Arquivos</h1>
+    
+    <button class="button" onclick="openPage('melhorias.html')">Fotos</button>
+    <button class="button" onclick="openPage('historias.html')">Histórias</button>
+    <button class="button" onclick="openPage('segredos.html')">Segredos</button>
+    <button class="button" onclick="openPage('arquivos.html')">Arquivos</button>
+
+    <h2>Foto ao Vivo</h2>
+    <button class="button" onclick="startCamera()">Tirar Foto ao Vivo</button>
+    
+    <div class="camera-container" id="cameraContainer">
+        <video id="video" autoplay></video>
+        <div class="actions">
+            <button class="button" onclick="takePhoto()">Tirar Foto</button>
+            <button class="button" onclick="stopCamera()">Parar Câmera</button>
+        </div>
+        <canvas id="canvas" style="display: none;"></canvas>
+    </div>
+
+    <!-- Botão Voltar -->
+    <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+</div>
+
+<script>
+    function openPage(page) {
+        window.location.href = page;
+    }
+
+    // Funções para o carregamento da câmera
+    function startCamera() {
+        const video = document.getElementById('video');
+        const cameraContainer = document.getElementById('cameraContainer');
+        
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    video.srcObject = stream;
+                    cameraContainer.style.display = 'flex';
+                })
+                .catch(function(err) {
+                    alert("Erro ao acessar a câmera: " + err);
+                });
+        } else {
+            alert("Sua câmera não é suportada.");
+        }
+    }
+
+    function takePhoto() {
+        const canvas = document.getElementById('canvas');
+        const video = document.getElementById('video');
+        const context = canvas.getContext('2d');
+
+        // Define o tamanho do canvas para o tamanho do vídeo
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        // Desenha o vídeo no canvas
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Converte a imagem em formato base64
+        const image = canvas.toDataURL('image/png');
+        alert('Foto tirada!');
+
+        // Parar a câmera depois de tirar a foto
+        stopCamera();
+    }
+
+    function stopCamera() {
+        const video = document.getElementById('video');
+        const stream = video.srcObject;
+        const tracks = stream.getTracks();
+
+        tracks.forEach(track => track.stop());
+        video.srcObject = null;
+        document.getElementById('cameraContainer').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

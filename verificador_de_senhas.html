@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Senhas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Globais */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            font-size: 16px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .input-group input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .result {
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .result.success {
+            color: green;
+        }
+
+        .result.error {
+            color: red;
+        }
+
+        .tips {
+            margin-top: 20px;
+        }
+
+        .tips ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .tips ul li {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .back-button:hover {
+            background-color: #45a049;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                max-width: 90%;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .input-group input {
+                font-size: 14px;
+            }
+
+            .result {
+                font-size: 16px;
+            }
+
+            .back-button {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 18px;
+            }
+
+            .input-group input {
+                font-size: 12px;
+            }
+
+            .result {
+                font-size: 14px;
+            }
+
+            .back-button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="icon">&#128273;</span> Verificador de Senhas</h1>
+        <div class="input-group">
+            <label for="password">Digite sua senha:</label>
+            <input type="password" id="password" placeholder="Senha">
+        </div>
+
+        <div class="result" id="result"></div>
+
+        <div class="tips">
+            <h3>Dicas de Segurança:</h3>
+            <ul>
+                <li>🔑 Nunca compartilhe suas senhas com ninguém.</li>
+                <li>🔑 Use senhas complexas e únicas para cada serviço.</li>
+                <li>🔑 Ative a autenticação de dois fatores sempre que possível.</li>
+            </ul>
+        </div>
+
+        <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+    </div>
+
+    <script>
+        document.getElementById("password").addEventListener("input", function() {
+            var password = document.getElementById("password").value;
+            var result = document.getElementById("result");
+
+            if (password.length >= 8 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password)) {
+                result.textContent = "Senha Forte!";
+                result.className = "result success";
+            } else {
+                result.textContent = "Senha Fraca. Tente novamente!";
+                result.className = "result error";
+            }
+        });
+    </script>
+</body>
+</html>

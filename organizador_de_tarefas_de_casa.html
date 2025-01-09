@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador de Tarefas de Casa</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .task-input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .add-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .add-button:hover {
+            background-color: #218838;
+        }
+
+        .add-button:active {
+            background-color: #1e7e34;
+        }
+
+        .task-list {
+            margin-top: 30px;
+            text-align: left;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 5px solid #28a745;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-item.completed {
+            text-decoration: line-through;
+            background-color: #e9f7e9;
+        }
+
+        .task-item button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .task-item button:hover {
+            background-color: #0056b3;
+        }
+
+        .task-item button:active {
+            background-color: #004085;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .task-input {
+                padding: 12px;
+            }
+
+            .add-button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Organizador de Tarefas de Casa</h1>
+
+    <!-- Campo para adicionar tarefa -->
+    <input type="text" id="taskInput" class="task-input" placeholder="Digite sua tarefa...">
+
+    <button class="add-button" onclick="addTask()">Adicionar Tarefa</button>
+
+    <!-- Lista de tarefas -->
+    <ul class="task-list" id="taskList">
+        <!-- As tarefas adicionadas aparecerão aqui -->
+    </ul>
+
+    <!-- Botão Voltar -->
+    <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+</div>
+
+<script>
+    // Função para adicionar tarefas
+    function addTask() {
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+        const taskText = taskInput.value.trim();
+
+        // Verificar se a tarefa não está vazia
+        if (taskText === "") {
+            alert("Por favor, insira uma tarefa.");
+            return;
+        }
+
+        // Criar um item de lista para a tarefa
+        const taskItem = document.createElement('li');
+        taskItem.classList.add('task-item');
+
+        // Criar o conteúdo da tarefa
+        const taskContent = document.createElement('span');
+        taskContent.textContent = taskText;
+        taskItem.appendChild(taskContent);
+
+        // Criar o botão de concluir tarefa
+        const completeButton = document.createElement('button');
+        completeButton.textContent = 'Concluir';
+        completeButton.onclick = function() {
+            taskItem.classList.toggle('completed');
+            completeButton.textContent = taskItem.classList.contains('completed') ? 'Desmarcar' : 'Concluir';
+        };
+        taskItem.appendChild(completeButton);
+
+        // Adicionar a tarefa à lista
+        taskList.appendChild(taskItem);
+
+        // Limpar o campo de entrada
+        taskInput.value = "";
+    }
+</script>
+
+</body>
+</html>

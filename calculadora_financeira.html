@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+            display: block;
+        }
+
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .account-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .account-container input {
+            width: 70%;
+        }
+
+        .account-container button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .account-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .account-container button:active {
+            background-color: #004085;
+        }
+
+        .account-list {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .account-item {
+            background-color: #e0f7fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .account-item span {
+            font-size: 16px;
+            color: #007bff;
+        }
+
+        #result {
+            margin-top: 30px;
+            background-color: #f1f3f5;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            input[type="number"], input[type="text"] {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .account-container button {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Calculadora Financeira</h1>
+
+    <!-- Formulário de entrada -->
+    <div class="form-container">
+        <label for="salary">Salário Mensal:</label>
+        <input type="number" id="salary" placeholder="Digite seu salário" required>
+
+        <div class="account-container">
+            <label for="account">Conta (Valor):</label>
+            <input type="number" id="account" placeholder="Valor da conta" required>
+            <button onclick="addAccount()">Adicionar</button>
+        </div>
+    </div>
+
+    <!-- Lista de contas -->
+    <div class="account-list" id="account-list">
+        <!-- As contas serão listadas aqui -->
+    </div>
+
+    <!-- Resultado -->
+    <div id="result" style="display:none;">
+        <h2>Resultado:</h2>
+        <p id="result-text">Aqui será exibido o resultado do seu cálculo.</p>
+    </div>
+
+    <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+</div>
+
+<script>
+    let accounts = [];
+    let salary = 0;
+
+    // Função para adicionar a conta à lista
+    function addAccount() {
+        const accountValue = parseFloat(document.getElementById('account').value);
+        if (isNaN(accountValue) || accountValue <= 0) {
+            alert("Por favor, insira um valor válido para a conta.");
+            return;
+        }
+
+        accounts.push(accountValue);
+        updateAccountList();
+        document.getElementById('account').value = ''; // Limpar o campo de valor
+    }
+
+    // Atualiza a lista de contas visível para o usuário
+    function updateAccountList() {
+        const accountListContainer = document.getElementById('account-list');
+        accountListContainer.innerHTML = '';
+
+        accounts.forEach((account, index) => {
+            const accountItem = document.createElement('div');
+            accountItem.classList.add('account-item');
+            accountItem.innerHTML = `
+                Conta ${index + 1}: <span>R$ ${account.toFixed(2)}</span>
+                <button onclick="removeAccount(${index})" style="background-color: #ff6f61; padding: 6px 12px; font-size: 14px; border-radius: 8px; color: white;">Remover</button>
+            `;
+            accountListContainer.appendChild(accountItem);
+        });
+
+        if (accounts.length > 0) {
+            displayResult();
+        }
+    }
+
+    // Função para remover uma conta da lista
+    function removeAccount(index) {
+        accounts.splice(index, 1);
+        updateAccountList();
+    }
+
+    // Função para calcular o saldo final
+    function displayResult() {
+        salary = parseFloat(document.getElementById('salary').value);
+        if (isNaN(salary) || salary <= 0) {
+            alert("Por favor, insira um valor válido para o salário.");
+            return;
+        }
+
+        const totalExpenses = accounts.reduce((total, account) => total + account, 0);
+        const remainingBalance = salary - totalExpenses;
+
+        const resultText = `
+            <strong>Salário:</strong> R$ ${salary.toFixed(2)}<br>
+            <strong>Total de Contas:</strong> R$ ${totalExpenses.toFixed(2)}<br>
+            <strong>Saldo Final:</strong> R$ ${remainingBalance.toFixed(2)}
+        `;
+
+        document.getElementById('result-text').innerHTML = resultText;
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

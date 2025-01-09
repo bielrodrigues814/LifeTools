@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A História da Arte de Pintar</title>
+    <style>
+        /* Resetando margens e paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f3f3;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #9b59b6;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .history-content {
+            margin-top: 20px;
+        }
+
+        .history-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #9b59b6;
+        }
+
+        .history-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn-voltar:hover {
+            background-color: #2980b9;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .history-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .history-content p {
+                font-size: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>A História da Arte de Pintar</h1>
+    </header>
+
+    <div class="container">
+        <div class="history-content">
+            <h2>Origem e Evolução da Arte de Pintar</h2>
+            <p>A arte de pintar tem origens muito antigas, remontando às primeiras expressões visuais feitas pelos seres humanos. As pinturas rupestres encontradas em cavernas, como as de Lascaux, na França, datam de cerca de 17.000 anos atrás e representam os primeiros exemplos conhecidos de arte pictórica. Esses primeiros desenhos eram usados tanto para registrar acontecimentos quanto para fins simbólicos e rituais.</p>
+
+            <p>Com o passar do tempo, a arte de pintar evoluiu e se diversificou. Na antiga civilização egípcia, a pintura era utilizada para decorar tumbas e templos, com uma abordagem simbólica e decorativa. Os egípcios eram conhecidos por sua precisão e atenção aos detalhes, utilizando cores vibrantes e formas geométricas para representar figuras humanas e divindades.</p>
+
+            <p>Na Grécia e Roma antigas, a pintura ganhou uma nova abordagem. Os gregos criaram frescos e imagens que representavam cenas mitológicas, enquanto os romanos seguiram essa tradição e aperfeiçoaram a técnica de pintura mural. A pintura também passou a ser usada para retratar a vida cotidiana, criando uma representação mais realista do mundo ao redor.</p>
+
+            <p>No entanto, foi durante o Renascimento, no século XV e XVI, que a pintura alcançou um novo nível de sofisticação. Artistas como Leonardo da Vinci, Michelangelo e Rafael começaram a explorar novas técnicas, como a perspectiva, e buscavam representar o corpo humano de maneira realista, o que levou a arte a uma nova era de inovação e criatividade.</p>
+
+            <p>Com o surgimento de diferentes movimentos artísticos ao longo dos séculos, como o Barroco, o Impressionismo, o Cubismo e o Surrealismo, a arte de pintar passou a refletir as mudanças culturais, sociais e filosóficas da época. Cada movimento trouxe novas formas de expressão, experimentação com cores e formas, além de técnicas inovadoras.</p>
+
+            <p>Hoje, a pintura continua sendo uma das formas mais importantes de expressão artística, com artistas contemporâneos explorando técnicas modernas, como a arte digital, e continuando a expandir os limites da criatividade e da expressão visual.</p>
+        </div>
+
+        <a href="file:///C:/OrganizePro/materia_escolar.html" class="btn-voltar">Voltar</a>
+    </div>
+
+    <script>
+        // Script para redirecionar ao clicar no botão
+        const voltarBtn = document.querySelector('.btn-voltar');
+        voltarBtn.addEventListener('click', function(event) {
+            window.location.href = 'file:///C:/OrganizePro/materia_escolar.html';
+        });
+    </script>
+
+</body>
+</html>

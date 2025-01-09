@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LifeTools - Seu App do Dia a Dia</title>
-  <style>
+  <style>  
     * {
       margin: 0;
       padding: 0;
@@ -185,6 +185,20 @@
       document.querySelector('.welcome-screen').style.display = 'none';
       document.querySelector('.container').style.display = 'flex';
     }, 4000); // 4000ms = 4 segundos
+
+    // Função para alternar as imagens de fundo
+    let images = [
+      'https://png.pngtree.com/png-vector/20241102/ourmid/pngtree-isometric-smartphone-with-colorful-app-icons-for-mobile-illustration-png-image_14237784.png',
+      'https://png.pngtree.com/element_pic/16/11/07/6de0f989fea69c221d8f2dbd6bf821c3.jpg',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUFfz2K4H03PRDN2l5_lnLO1jtwziaDOcqqA&s',
+      'https://blog.shiftcode.com.br/wp-content/uploads/2017/07/criar-um-app-2.png'
+    ];
+    let index = 0;
+
+    setInterval(() => {
+      document.querySelector('.image-container').style.backgroundImage = `url(${images[index]})`;
+      index = (index + 1) % images.length;
+    }, 4000); // Troca a imagem a cada 4 segundos
   </script>
 </body>
 </html>

@@ -57,27 +57,6 @@
       overflow-y: auto;
     }
 
-    .sidebar .icon {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .sidebar .icon i {
-      font-size: 50px;
-      color: #007BFF;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
     .sidebar ul {
       list-style-type: none;
     }
@@ -119,6 +98,8 @@
       background-position: center;
       background-repeat: no-repeat;
       margin-left: 250px;
+      transition: background-image 1s ease-in-out;
+      height: 100%; /* Garante que a imagem ocupe toda a altura disponível */
     }
 
     @media (max-width: 768px) {
@@ -135,7 +116,6 @@
       }
     }
   </style>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- Tela de Boas-Vindas -->
@@ -147,9 +127,6 @@
   <div class="container">
     <!-- Menu lateral -->
     <nav class="sidebar">
-      <div class="icon">
-        <i class="fas fa-tools"></i>
-      </div>
       <ul>
         <li><a href="agenda_de_tarefas.html">Agenda de Tarefas</a></li>
         <li><a href="conversor_de_unidades.html">Conversor de Unidades</a></li>
@@ -186,19 +163,22 @@
       document.querySelector('.container').style.display = 'flex';
     }, 4000); // 4000ms = 4 segundos
 
-    // Função para alternar as imagens de fundo
-    let images = [
+    // Função para alternar as imagens a cada 4 segundos
+    let imageUrls = [
       'https://png.pngtree.com/png-vector/20241102/ourmid/pngtree-isometric-smartphone-with-colorful-app-icons-for-mobile-illustration-png-image_14237784.png',
       'https://png.pngtree.com/element_pic/16/11/07/6de0f989fea69c221d8f2dbd6bf821c3.jpg',
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUFfz2K4H03PRDN2l5_lnLO1jtwziaDOcqqA&s',
       'https://blog.shiftcode.com.br/wp-content/uploads/2017/07/criar-um-app-2.png'
     ];
-    let index = 0;
+    let currentIndex = 0;
 
-    setInterval(() => {
-      document.querySelector('.image-container').style.backgroundImage = `url(${images[index]})`;
-      index = (index + 1) % images.length;
-    }, 4000); // Troca a imagem a cada 4 segundos
+    function changeImage() {
+      document.querySelector('.image-container').style.backgroundImage = `url(${imageUrls[currentIndex]})`;
+      currentIndex = (currentIndex + 1) % imageUrls.length; // Ciclo pelas imagens
+    }
+
+    // Altera a imagem a cada 4 segundos
+    setInterval(changeImage, 4000);
   </script>
 </body>
 </html>

@@ -185,10 +185,20 @@
       <h2>Sobre o Desenvolvedor</h2>
       <p>Meu nome é Gabriel Souza Rodrigues, sou um desenvolvedor Full Stack apaixonado por tecnologia e inovação. Criei o LifeTools com o objetivo de facilitar a vida das pessoas, reunindo funcionalidades práticas em um único aplicativo. Acredito que a tecnologia pode transformar o cotidiano, e este projeto reflete minha dedicação em oferecer soluções modernas e acessíveis para todos.</p>
     </section>
-    <a href="file:///C:/OrganizePro/index.html" class="back-button">Voltar</a>
+    <a href="#" class="back-button" onclick="goBack()">Voltar</a>
   </div>
   <footer>
     <p>&copy; 2025 LifeTools. Desenvolvido por Gabriel Souza Rodrigues. Todos os direitos reservados.</p>
   </footer>
+
+  <script>
+    function goBack() {
+      if (document.referrer) {
+        window.history.back();
+      } else {
+        window.location.href = "index.html"; // Substitua pelo caminho correto no GitHub Pages
+      }
+    }
+  </script>
 </body>
 </html>

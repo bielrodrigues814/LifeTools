@@ -55,6 +55,9 @@
       top: 0;
       left: 0;
       overflow-y: auto;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
     }
 
     .sidebar ul {
@@ -91,10 +94,30 @@
       padding-left: 15px;
     }
 
+    .menu-toggle {
+      width: 50px;
+      height: 50px;
+      background-color: #333;
+      color: white;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .menu-toggle.open + .sidebar {
+      transform: translateX(0);
+    }
+
     .image-container {
       flex: 1;
-<<<<<<< HEAD
-      margin-left: 250px;
+      margin-left: 0; /* Ajustado para quando o menu lateral está oculto */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -114,35 +137,6 @@
       opacity: 1;
     }
 
-    /* Menu Hambúrguer */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      width: 30px;
-      height: 30px;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      position: absolute;
-      top: 20px;
-      left: 20px;
-    }
-
-    .hamburger div {
-      width: 30px;
-      height: 4px;
-      background-color: #333;
-=======
-      background-image: url('https://png.pngtree.com/element_pic/16/11/07/6de0f989fea69c221d8f2dbd6bf821c3.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      margin-left: 250px;
-      transition: background-image 1s ease-in-out;
-      height: 100%; /* Garante que a imagem ocupe toda a altura disponível */
->>>>>>> ceb79c04dd0084aa50d9e8a64239ffeef2866497
-    }
-
     @media (max-width: 768px) {
       .sidebar {
         width: 200px;
@@ -153,7 +147,7 @@
       }
 
       .image-container {
-        margin-left: 200px;
+        margin-left: 0;
       }
     }
   </style>
@@ -164,46 +158,14 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5Nz5CfJummB1spFB-Pn0ctuiQ0F_pr0ahbg&s" alt="Bem-vindo ao LifeTools">
   </div>
 
+  <!-- Botão de alternância do menu -->
+  <div class="menu-toggle">☰</div>
+
   <!-- Interface principal -->
   <div class="container">
     <!-- Menu lateral -->
     <nav class="sidebar">
       <ul>
-<<<<<<< HEAD
-        <li><a href="agenda_de_tarefas.html" target="_blank"><i class="fas fa-calendar-check"></i> Agenda de Tarefas</a></li>
-        <li><a href="conversor_de_unidades.html"><i class="fas fa-exchange-alt"></i> Conversor de Unidades</a></li>
-        <li><a href="calculadora.html"><i class="fas fa-calculator"></i> Calculadora Simples</a></li>
-        <li><a href="lista_de_compras.html"><i class="fas fa-list-ul"></i> Lista de Compras</a></li>
-        <li><a href="rastreamento_de_habitos.html"><i class="fas fa-heartbeat"></i> Rastreamento de Hábitos</a></li>
-        <li><a href="dicionario_pessoal.html"><i class="fas fa-book"></i> Dicionário Pessoal</a></li>
-        <li><a href="planejador_de_refeicoes.html"><i class="fas fa-utensils"></i> Planejador de Refeições</a></li>
-        <li><a href="verificador_de_senhas.html"><i class="fas fa-lock"></i> Verificador de Senhas</a></li>
-        <li><a href="contador_de_calorias.html"><i class="fas fa-weight"></i> Contador de Calorias</a></li>
-        <li><a href="calendario_de_eventos.html"><i class="fas fa-calendar-alt"></i> Calendário de Eventos</a></li>
-        <li><a href="organizador_de_receitas.html"><i class="fas fa-book-open"></i> Organizador de Receitas</a></li>
-        <li><a href="consultoria_de_bem_estar.html"><i class="fas fa-spa"></i> Consultoria de Bem-estar</a></li>
-        <li><a href="calculo_imc.html"><i class="fas fa-dumbbell"></i> Cálculo de IMC</a></li>
-        <li><a href="organizador_de_fotos.html"><i class="fas fa-images"></i> Organizador de Fotos</a></li>
-        <li><a href="banco_de_ideias_criativas.html"><i class="fas fa-lightbulb"></i> Banco de Ideias Criativas</a></li>
-        <li><a href="organizador_de_tarefas_de_casa.html"><i class="fas fa-tasks"></i> Organizador de Tarefas de Casa</a></li>
-        <li><a href="teste_de_personalidade.html"><i class="fas fa-user"></i> Testes de Personalidade</a></li>
-        <li><a href="calculadora_financeira.html"><i class="fas fa-dollar-sign"></i> Calculadora Financeira</a></li>
-        <li><a href="materia_escolar.html"><i class="fas fa-book-reader"></i> Matéria Escolar</a></li>
-        <li><a href="tabuada.html"><i class="fas fa-math"></i> Tabuada</a></li>
-        <!-- Novas Categorias -->
-        <li><a href="dividify.html"><i class="fas fa-users"></i> Dividify</a></li>
-        <li><a href="traducao.html"><i class="fas fa-language"></i> Tradução</a></li>
-      </ul>
-    </nav>
-
-    <!-- Imagem Fixa com a nova imagem -->
-    <div class="image-container">
-      <img src="https://png.pngtree.com/png-vector/20241102/ourmid/pngtree-isometric-smartphone-with-colorful-app-icons-for-mobile-illustration-png-image_14237784.png" class="active">
-      <img src="https://e7.pngegg.com/pngimages/124/394/png-clipart-of-smartphone-and-app-icons-mobile-app-development-application-software-installation-app-store-optimization-mobile-application-electronics-gadget-thumbnail.png">
-      <img src="https://png.pngtree.com/png-clipart/20240907/original/pngtree-smartphone-with-apps-png-image_15962568.png">
-      <img src="https://blog.shiftcode.com.br/wp-content/uploads/2017/07/criar-um-app-2.png">
-    </div>
-=======
         <li><a href="agenda_de_tarefas.html">Agenda de Tarefas</a></li>
         <li><a href="conversor_de_unidades.html">Conversor de Unidades</a></li>
         <li><a href="calculadora.html">Calculadora Simples</a></li>
@@ -217,31 +179,35 @@
         <li><a href="organizador_de_receitas.html">Organizador de Receitas</a></li>
         <li><a href="consultoria_de_bem_estar.html">Consultoria de Bem-estar</a></li>
         <li><a href="calculo_imc.html">Cálculo de IMC</a></li>
-        <li><a href="organizador_de_fotos.html">Organizador de Fotos e Memórias</a></li>
+        <li><a href="organizador_de_fotos.html">Organizador de Fotos</a></li>
         <li><a href="banco_de_ideias_criativas.html">Banco de Ideias Criativas</a></li>
         <li><a href="organizador_de_tarefas_de_casa.html">Organizador de Tarefas de Casa</a></li>
         <li><a href="teste_de_personalidade.html">Testes de Personalidade</a></li>
         <li><a href="calculadora_financeira.html">Calculadora Financeira</a></li>
         <li><a href="materia_escolar.html">Matéria Escolar</a></li>
         <li><a href="tabuada.html">Tabuada</a></li>
+        <li><a href="traducao.html">Tradução</a></li>
         <li><a href="sobre_o_app.html" class="sobre-app">Sobre o App</a></li>
       </ul>
     </nav>
 
     <!-- Imagem Fixa -->
-    <div class="image-container"></div>
->>>>>>> ceb79c04dd0084aa50d9e8a64239ffeef2866497
+    <div class="image-container">
+      <img src="https://png.pngtree.com/png-vector/20241102/ourmid/pngtree-isometric-smartphone-with-colorful-app-icons-for-mobile-illustration-png-image_14237784.png" class="active">
+      <img src="https://png.pngtree.com/element_pic/16/11/07/6de0f989fea69c221d8f2dbd6bf821c3.jpg">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUFfz2K4H03PRDN2l5_lnLO1jtwziaDOcqqA&s">
+      <img src="https://blog.shiftcode.com.br/wp-content/uploads/2017/07/criar-um-app-2.png">
+    </div>
   </div>
 
   <script>
-    // Aguarda 4 segundos antes de exibir a interface original
+    // Oculta a tela de boas-vindas e exibe a interface principal
     setTimeout(() => {
       document.querySelector('.welcome-screen').style.display = 'none';
       document.querySelector('.container').style.display = 'flex';
     }, 4000); // 4000ms = 4 segundos
 
-<<<<<<< HEAD
-    // Alterna imagens a cada 3 segundos
+    // Alterna imagens na imagem-container
     const images = document.querySelectorAll('.image-container img');
     let currentIndex = 0;
 
@@ -250,24 +216,14 @@
       currentIndex = (currentIndex + 1) % images.length;
       images[currentIndex].classList.add('active');
     }, 3000); // 3000ms = 3 segundos
-=======
-    // Função para alternar as imagens a cada 4 segundos
-    let imageUrls = [
-      'https://png.pngtree.com/png-vector/20241102/ourmid/pngtree-isometric-smartphone-with-colorful-app-icons-for-mobile-illustration-png-image_14237784.png',
-      'https://png.pngtree.com/element_pic/16/11/07/6de0f989fea69c221d8f2dbd6bf821c3.jpg',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUFfz2K4H03PRDN2l5_lnLO1jtwziaDOcqqA&s',
-      'https://blog.shiftcode.com.br/wp-content/uploads/2017/07/criar-um-app-2.png'
-    ];
-    let currentIndex = 0;
 
-    function changeImage() {
-      document.querySelector('.image-container').style.backgroundImage = `url(${imageUrls[currentIndex]})`;
-      currentIndex = (currentIndex + 1) % imageUrls.length; // Ciclo pelas imagens
-    }
+    // Alternância do menu lateral
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
 
-    // Altera a imagem a cada 4 segundos
-    setInterval(changeImage, 4000);
->>>>>>> ceb79c04dd0084aa50d9e8a64239ffeef2866497
+    menuToggle.addEventListener('click', () => {
+      sidebar.style.transform = sidebar.style.transform === 'translateX(0px)' ? 'translateX(-100%)' : 'translateX(0)';
+    });
   </script>
 </body>
 </html>

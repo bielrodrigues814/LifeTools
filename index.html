@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LifeTools - Seu App do Dia a Dia</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
+  <style>  
     * {
       margin: 0;
       padding: 0;
@@ -18,7 +17,6 @@
       display: flex;
       height: 100vh;
       overflow: hidden;
-      flex-direction: column;
     }
 
     .welcome-screen {
@@ -47,10 +45,9 @@
       flex-direction: row;
     }
 
-    /* Menu Lateral */
     .sidebar {
       width: 250px;
-      background-color: #2c3e50;
+      background-color: #333;
       color: white;
       padding: 20px;
       position: fixed;
@@ -58,14 +55,10 @@
       top: 0;
       left: 0;
       overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s ease;
     }
 
     .sidebar ul {
       list-style-type: none;
-      padding: 0;
     }
 
     .sidebar li {
@@ -76,29 +69,31 @@
       color: white;
       text-decoration: none;
       font-size: 18px;
-      display: flex;
-      align-items: center;
+      display: block;
       transition: all 0.3s ease;
     }
 
     .sidebar a:hover {
-      background-color: #34495e;
+      background-color: #575757;
       padding-left: 10px;
+    }
+
+    .sidebar a.sobre-app {
+      background-color: #007BFF;
+      color: white;
+      font-weight: bold;
       border-radius: 5px;
+      padding: 10px;
     }
 
-    .sidebar a i {
-      margin-right: 10px;
+    .sidebar a.sobre-app:hover {
+      background-color: #0056b3;
+      padding-left: 15px;
     }
 
-    /* Ícones ao lado dos links */
-    .sidebar a i {
-      font-size: 20px;
-    }
-
-    /* Imagem da direita */
     .image-container {
       flex: 1;
+<<<<<<< HEAD
       margin-left: 250px;
       display: flex;
       justify-content: center;
@@ -137,26 +132,30 @@
       width: 30px;
       height: 4px;
       background-color: #333;
+=======
+      background-image: url('https://png.pngtree.com/element_pic/16/11/07/6de0f989fea69c221d8f2dbd6bf821c3.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      margin-left: 250px;
+      transition: background-image 1s ease-in-out;
+      height: 100%; /* Garante que a imagem ocupe toda a altura disponível */
+>>>>>>> ceb79c04dd0084aa50d9e8a64239ffeef2866497
     }
 
     @media (max-width: 768px) {
       .sidebar {
-        display: none; /* Esconde o menu lateral em telas pequenas */
+        width: 200px;
       }
 
-      .hamburger {
-        display: flex;
-      }
-
-      .container {
-        flex-direction: column;
+      .sidebar a {
+        font-size: 16px;
       }
 
       .image-container {
-        margin-left: 0;
+        margin-left: 200px;
       }
     }
-
   </style>
 </head>
 <body>
@@ -167,16 +166,10 @@
 
   <!-- Interface principal -->
   <div class="container">
-    <!-- Menu Hambúrguer -->
-    <div class="hamburger" onclick="toggleMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-
-    <!-- Menu Lateral -->
+    <!-- Menu lateral -->
     <nav class="sidebar">
       <ul>
+<<<<<<< HEAD
         <li><a href="agenda_de_tarefas.html" target="_blank"><i class="fas fa-calendar-check"></i> Agenda de Tarefas</a></li>
         <li><a href="conversor_de_unidades.html"><i class="fas fa-exchange-alt"></i> Conversor de Unidades</a></li>
         <li><a href="calculadora.html"><i class="fas fa-calculator"></i> Calculadora Simples</a></li>
@@ -210,22 +203,44 @@
       <img src="https://png.pngtree.com/png-clipart/20240907/original/pngtree-smartphone-with-apps-png-image_15962568.png">
       <img src="https://blog.shiftcode.com.br/wp-content/uploads/2017/07/criar-um-app-2.png">
     </div>
+=======
+        <li><a href="agenda_de_tarefas.html">Agenda de Tarefas</a></li>
+        <li><a href="conversor_de_unidades.html">Conversor de Unidades</a></li>
+        <li><a href="calculadora.html">Calculadora Simples</a></li>
+        <li><a href="lista_de_compras.html">Lista de Compras</a></li>
+        <li><a href="rastreamento_de_habitos.html">Rastreamento de Hábitos</a></li>
+        <li><a href="dicionario_pessoal.html">Dicionário Pessoal</a></li>
+        <li><a href="planejador_de_refeicoes.html">Planejador de Refeições</a></li>
+        <li><a href="verificador_de_senhas.html">Verificador de Senhas</a></li>
+        <li><a href="contador_de_calorias.html">Contador de Calorias</a></li>
+        <li><a href="calendario_de_eventos.html">Calendário de Eventos</a></li>
+        <li><a href="organizador_de_receitas.html">Organizador de Receitas</a></li>
+        <li><a href="consultoria_de_bem_estar.html">Consultoria de Bem-estar</a></li>
+        <li><a href="calculo_imc.html">Cálculo de IMC</a></li>
+        <li><a href="organizador_de_fotos.html">Organizador de Fotos e Memórias</a></li>
+        <li><a href="banco_de_ideias_criativas.html">Banco de Ideias Criativas</a></li>
+        <li><a href="organizador_de_tarefas_de_casa.html">Organizador de Tarefas de Casa</a></li>
+        <li><a href="teste_de_personalidade.html">Testes de Personalidade</a></li>
+        <li><a href="calculadora_financeira.html">Calculadora Financeira</a></li>
+        <li><a href="materia_escolar.html">Matéria Escolar</a></li>
+        <li><a href="tabuada.html">Tabuada</a></li>
+        <li><a href="sobre_o_app.html" class="sobre-app">Sobre o App</a></li>
+      </ul>
+    </nav>
+
+    <!-- Imagem Fixa -->
+    <div class="image-container"></div>
+>>>>>>> ceb79c04dd0084aa50d9e8a64239ffeef2866497
   </div>
 
   <script>
-    // Exibe ou esconde o menu lateral quando o hambúrguer é clicado
-    function toggleMenu() {
-      const sidebar = document.querySelector('.sidebar');
-      // Alterna a exibição do menu lateral entre 'none' e 'flex'
-      sidebar.style.display = (sidebar.style.display === 'flex') ? 'none' : 'flex';
-    }
-
     // Aguarda 4 segundos antes de exibir a interface original
     setTimeout(() => {
       document.querySelector('.welcome-screen').style.display = 'none';
       document.querySelector('.container').style.display = 'flex';
     }, 4000); // 4000ms = 4 segundos
 
+<<<<<<< HEAD
     // Alterna imagens a cada 3 segundos
     const images = document.querySelectorAll('.image-container img');
     let currentIndex = 0;
@@ -235,6 +250,24 @@
       currentIndex = (currentIndex + 1) % images.length;
       images[currentIndex].classList.add('active');
     }, 3000); // 3000ms = 3 segundos
+=======
+    // Função para alternar as imagens a cada 4 segundos
+    let imageUrls = [
+      'https://png.pngtree.com/png-vector/20241102/ourmid/pngtree-isometric-smartphone-with-colorful-app-icons-for-mobile-illustration-png-image_14237784.png',
+      'https://png.pngtree.com/element_pic/16/11/07/6de0f989fea69c221d8f2dbd6bf821c3.jpg',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUFfz2K4H03PRDN2l5_lnLO1jtwziaDOcqqA&s',
+      'https://blog.shiftcode.com.br/wp-content/uploads/2017/07/criar-um-app-2.png'
+    ];
+    let currentIndex = 0;
+
+    function changeImage() {
+      document.querySelector('.image-container').style.backgroundImage = `url(${imageUrls[currentIndex]})`;
+      currentIndex = (currentIndex + 1) % imageUrls.length; // Ciclo pelas imagens
+    }
+
+    // Altera a imagem a cada 4 segundos
+    setInterval(changeImage, 4000);
+>>>>>>> ceb79c04dd0084aa50d9e8a64239ffeef2866497
   </script>
 </body>
 </html>

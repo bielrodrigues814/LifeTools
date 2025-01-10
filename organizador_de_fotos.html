@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organizador de Fotos</title>
+    <title>Banco de Ideias Criativas</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f7f7f7;
+            background-color: #f0f4f8;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,19 +17,40 @@
 
         .container {
             width: 100%;
-            max-width: 700px;
-            background-color: #fff;
-            padding: 30px;
+            max-width: 800px;
+            background-color: #ffffff;
+            padding: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
             color: #333;
         }
 
-        .container h1 {
+        h1 {
             font-size: 28px;
-            color: #333;
             margin-bottom: 20px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .input-area {
+            margin-bottom: 20px;
+        }
+
+        .input-area textarea {
+            width: 100%;
+            height: 120px;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            resize: none;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-area textarea:focus {
+            border-color: #4CAF50;
         }
 
         .button {
@@ -38,7 +59,7 @@
             padding: 15px;
             border: none;
             border-radius: 8px;
-            margin: 10px 0;
+            margin-top: 20px;
             cursor: pointer;
             width: 100%;
             font-size: 18px;
@@ -53,21 +74,22 @@
             background-color: #1e7e34;
         }
 
-        .camera-container {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
+        .ideas-container {
+            margin-top: 30px;
         }
 
-        video {
-            width: 100%;
-            max-width: 300px;
+        .idea {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #28a745;
             border-radius: 8px;
+            text-align: left;
+            transition: background-color 0.3s;
         }
 
-        .actions {
-            margin-top: 10px;
+        .idea:hover {
+            background-color: #e9f7e9;
         }
 
         .back-button {
@@ -96,16 +118,22 @@
                 padding: 20px;
             }
 
+            .input-area textarea {
+                padding: 12px;
+                font-size: 14px;
+            }
+
             .button {
                 font-size: 16px;
             }
 
-            .container h1 {
+            h1 {
                 font-size: 24px;
             }
 
-            video {
-                max-width: 100%;
+            .idea {
+                padding: 12px;
+                font-size: 14px;
             }
         }
     </style>
@@ -113,81 +141,66 @@
 <body>
 
 <div class="container">
-    <h1>Organizador de Fotos e Arquivos</h1>
-    
-    <button class="button" onclick="openPage('melhorias.html')">Fotos</button>
-    <button class="button" onclick="openPage('historias.html')">Histórias</button>
-    <button class="button" onclick="openPage('segredos.html')">Segredos</button>
-    <button class="button" onclick="openPage('arquivos.html')">Arquivos</button>
+    <h1>Banco de Ideias Criativas</h1>
 
-    <h2>Foto ao Vivo</h2>
-    <button class="button" onclick="startCamera()">Tirar Foto ao Vivo</button>
-    
-    <div class="camera-container" id="cameraContainer">
-        <video id="video" autoplay></video>
-        <div class="actions">
-            <button class="button" onclick="takePhoto()">Tirar Foto</button>
-            <button class="button" onclick="stopCamera()">Parar Câmera</button>
-        </div>
-        <canvas id="canvas" style="display: none;"></canvas>
+    <div class="input-area">
+        <textarea id="userIdea" placeholder="Digite sua ideia..."></textarea>
+    </div>
+
+    <button class="button" onclick="generateIdeas()">Gerar Ideias</button>
+
+    <div class="ideas-container" id="ideasContainer">
+        <!-- As ideias geradas aparecerão aqui -->
     </div>
 
     <!-- Botão Voltar -->
-    <a href="file:///C:/wamp64/www/LifeTools/index.html" class="back-button">Voltar</a>
+    <a href="index.html" class="back-button">Voltar</a>
 </div>
 
 <script>
-    function openPage(page) {
-        window.location.href = page;
-    }
+    // Função simulada para gerar ideias melhores com base na ideia do usuário
+    function generateIdeas() {
+        const userIdea = document.getElementById('userIdea').value.trim();
 
-    // Funções para o carregamento da câmera
-    function startCamera() {
-        const video = document.getElementById('video');
-        const cameraContainer = document.getElementById('cameraContainer');
-        
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then(function(stream) {
-                    video.srcObject = stream;
-                    cameraContainer.style.display = 'flex';
-                })
-                .catch(function(err) {
-                    alert("Erro ao acessar a câmera: " + err);
-                });
-        } else {
-            alert("Sua câmera não é suportada.");
+        if (userIdea === "") {
+            alert("Por favor, insira sua ideia antes de gerar sugestões.");
+            return;
         }
-    }
 
-    function takePhoto() {
-        const canvas = document.getElementById('canvas');
-        const video = document.getElementById('video');
-        const context = canvas.getContext('2d');
+        // Simulando o comportamento de uma IA gerando ideias mais criativas
+        const ideas = [
+            "Transforme sua ideia em um produto sustentável com impacto social positivo.",
+            "Aplique sua ideia em uma plataforma digital para alcançar uma audiência global.",
+            "Incorpore a ideia em um projeto colaborativo de rede social com funcionalidades inovadoras.",
+            "Revise a ideia para integrar tecnologias emergentes como IA ou Blockchain.",
+            "Crie uma solução híbrida entre o físico e o digital que ofereça experiências imersivas.",
+            "Explore parcerias com influencers para expandir a visibilidade da sua ideia.",
+            "Proponha a ideia como uma solução para um problema específico de uma comunidade.",
+            "Use design de interface (UI/UX) inovador para aumentar a interação do usuário."
+        ];
 
-        // Define o tamanho do canvas para o tamanho do vídeo
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+        // Gerar um número aleatório de 3 ideias a partir da lista
+        const generatedIdeas = [];
+        const randomIndexes = [];
+        
+        while (generatedIdeas.length < 3) {
+            const index = Math.floor(Math.random() * ideas.length);
+            if (!randomIndexes.includes(index)) {
+                randomIndexes.push(index);
+                generatedIdeas.push(ideas[index]);
+            }
+        }
 
-        // Desenha o vídeo no canvas
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        // Exibir as ideias geradas na interface
+        const ideasContainer = document.getElementById('ideasContainer');
+        ideasContainer.innerHTML = '';
 
-        // Converte a imagem em formato base64
-        const image = canvas.toDataURL('image/png');
-        alert('Foto tirada!');
-
-        // Parar a câmera depois de tirar a foto
-        stopCamera();
-    }
-
-    function stopCamera() {
-        const video = document.getElementById('video');
-        const stream = video.srcObject;
-        const tracks = stream.getTracks();
-
-        tracks.forEach(track => track.stop());
-        video.srcObject = null;
-        document.getElementById('cameraContainer').style.display = 'none';
+        generatedIdeas.forEach(idea => {
+            const ideaElement = document.createElement('div');
+            ideaElement.classList.add('idea');
+            ideaElement.textContent = idea;
+            ideasContainer.appendChild(ideaElement);
+        });
     }
 </script>
 

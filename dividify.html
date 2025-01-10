@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dividify - Divisão de Conta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #3498db, #9b59b6);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+      transform: translateY(-30px);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .input-group label {
+      font-size: 16px;
+      font-weight: 500;
+      color: #333;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 14px;
+      font-size: 18px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      margin-top: 8px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .input-group input:focus {
+      border-color: #3498db;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background: #3498db;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+
+    .result {
+      margin-top: 30px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .result span {
+      color: #3498db;
+      font-size: 22px;
+    }
+
+    .back-btn {
+      margin-top: 20px;
+      padding: 12px;
+      background: #e74c3c;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #c0392b;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dividify - Divisão de Conta</h1>
+
+    <div class="input-group">
+      <label for="total-value">Valor Total (R$):</label>
+      <input type="number" id="total-value" placeholder="Digite o valor total" />
+    </div>
+
+    <div class="input-group">
+      <label for="num-people">Número de Pessoas:</label>
+      <input type="number" id="num-people" placeholder="Digite o número de pessoas" />
+    </div>
+
+    <button class="btn" onclick="calculateCost()">Calcular</button>
+
+    <div class="result" id="result"></div>
+
+    <!-- Botão Voltar -->
+    <button class="back-btn" onclick="window.location.href='file:///C:/wamp64/www/LifeTools/index.html';">Voltar</button>
+  </div>
+
+  <script>
+    function calculateCost() {
+      const totalValue = parseFloat(document.getElementById("total-value").value);
+      const numPeople = parseInt(document.getElementById("num-people").value);
+
+      if (isNaN(totalValue) || isNaN(numPeople) || totalValue <= 0 || numPeople <= 0) {
+        document.getElementById("result").innerHTML = "Por favor, insira valores válidos.";
+        return;
+      }
+
+      const costPerPerson = totalValue / numPeople;
+
+      document.getElementById("result").innerHTML = `Cada pessoa deve pagar R$ <span>${costPerPerson.toFixed(2)}</span>`;
+    }
+  </script>
+</body>
+</html>

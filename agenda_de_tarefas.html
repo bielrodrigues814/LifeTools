@@ -182,7 +182,6 @@
       cursor: pointer;
     }
 
-    /* Botão para salvar em PDF */
     .save-pdf-btn {
       margin-top: 30px;
       padding: 14px 24px;
@@ -199,7 +198,6 @@
       background-color: #0056b3;
     }
 
-    /* Responsividade */
     @media (max-width: 768px) {
       .sidebar {
         position: relative;
@@ -239,7 +237,6 @@
 </head>
 <body>
   <div class="container">
-    <!-- Menu lateral -->
     <nav class="sidebar">
       <h2>LifeTools</h2>
       <a href="index.html">Voltar para o Início</a>
@@ -255,11 +252,8 @@
       <a href="calendario_de_eventos.html">Calendário de Eventos</a>
     </nav>
 
-    <!-- Conteúdo principal -->
     <div class="main-content">
       <h1>Agenda de Tarefas</h1>
-
-      <!-- Formulário para adicionar tarefas -->
       <div class="task-form">
         <h2>Nova Tarefa</h2>
         <label for="task-title">Título da Tarefa</label>
@@ -277,23 +271,15 @@
         <button onclick="addTask()">Adicionar Tarefa</button>
       </div>
 
-      <!-- Lista de Tarefas -->
-      <ul class="task-list" id="task-list">
-        <!-- Tarefas serão inseridas aqui -->
-      </ul>
+      <ul class="task-list" id="task-list"></ul>
 
-      <!-- Botão para salvar em PDF -->
       <button class="save-pdf-btn" onclick="saveAsPDF()">Salvar como PDF</button>
 
-      <!-- Botão Voltar -->
-      <a href="file:///C:/wamp64/www/LifeTools/index.html">
-        <button>Voltar</button>
-      </a>
+      <button class="save-pdf-btn" onclick="window.location.href='file:///C:/wamp64/www/LifeTools/index.html';">Voltar</button>
     </div>
   </div>
 
   <script>
-    // Função para adicionar tarefa
     function addTask() {
       const title = document.getElementById('task-title').value;
       const date = document.getElementById('task-date').value;
@@ -319,20 +305,17 @@
       `;
       taskList.appendChild(li);
 
-      // Limpar campos do formulário
       document.getElementById('task-title').value = '';
       document.getElementById('task-date').value = '';
       document.getElementById('task-time').value = '';
       document.getElementById('task-desc').value = '';
     }
 
-    // Função para deletar tarefa
     function deleteTask(button) {
       const li = button.parentElement.parentElement;
       li.remove();
     }
 
-    // Função para salvar como PDF
     function saveAsPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();

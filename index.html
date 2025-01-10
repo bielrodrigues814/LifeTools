@@ -35,7 +35,7 @@
     }
 
     .welcome-screen img {
-      max-width: 50%;
+      max-width: 90%;
       height: auto;
     }
 
@@ -99,14 +99,24 @@
     /* Imagem da direita */
     .image-container {
       flex: 1;
-      background-image: url('https://e7.pngegg.com/pngimages/394/962/png-clipart-mobile-app-development-application-software-ios-android-creative-mobile-phone-model-phone-illustration-gadget-phone-icon-thumbnail.png');
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
       margin-left: 250px;
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+    }
+
+    .image-container img {
+      max-width: 90%;
+      height: auto;
+      transition: opacity 1s ease-in-out;
+      position: absolute;
+      display: none;
+    }
+
+    .image-container img.active {
+      display: block;
+      opacity: 1;
     }
 
     /* Menu Hambúrguer */
@@ -187,11 +197,19 @@
         <li><a href="calculadora_financeira.html"><i class="fas fa-dollar-sign"></i> Calculadora Financeira</a></li>
         <li><a href="materia_escolar.html"><i class="fas fa-book-reader"></i> Matéria Escolar</a></li>
         <li><a href="tabuada.html"><i class="fas fa-math"></i> Tabuada</a></li>
+        <!-- Novas Categorias -->
+        <li><a href="dividify.html"><i class="fas fa-users"></i> Dividify</a></li>
+        <li><a href="traducao.html"><i class="fas fa-language"></i> Tradução</a></li>
       </ul>
     </nav>
 
     <!-- Imagem Fixa com a nova imagem -->
-    <div class="image-container"></div>
+    <div class="image-container">
+      <img src="https://png.pngtree.com/png-vector/20241102/ourmid/pngtree-isometric-smartphone-with-colorful-app-icons-for-mobile-illustration-png-image_14237784.png" class="active">
+      <img src="https://e7.pngegg.com/pngimages/124/394/png-clipart-of-smartphone-and-app-icons-mobile-app-development-application-software-installation-app-store-optimization-mobile-application-electronics-gadget-thumbnail.png">
+      <img src="https://png.pngtree.com/png-clipart/20240907/original/pngtree-smartphone-with-apps-png-image_15962568.png">
+      <img src="https://blog.shiftcode.com.br/wp-content/uploads/2017/07/criar-um-app-2.png">
+    </div>
   </div>
 
   <script>
@@ -207,6 +225,16 @@
       document.querySelector('.welcome-screen').style.display = 'none';
       document.querySelector('.container').style.display = 'flex';
     }, 4000); // 4000ms = 4 segundos
+
+    // Alterna imagens a cada 3 segundos
+    const images = document.querySelectorAll('.image-container img');
+    let currentIndex = 0;
+
+    setInterval(() => {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add('active');
+    }, 3000); // 3000ms = 3 segundos
   </script>
 </body>
 </html>

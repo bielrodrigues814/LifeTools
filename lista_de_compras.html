@@ -178,7 +178,7 @@
     <div class="total" id="total">Total: R$ 0.00</div>
 
     <!-- Botão Voltar para a interface principal -->
-    <a href="#" class="back-button" onclick="redirectToIndex()">Voltar para a Interface Principal</a>
+    <a href="index.html" class="back-button">Voltar para a Interface Principal</a>
   </div>
 
   <script>
@@ -252,10 +252,6 @@
       const savedItems = JSON.parse(localStorage.getItem('items')) || [];
       const updatedItems = savedItems.filter(item => item.name !== name || item.price !== price);
       localStorage.setItem('items', JSON.stringify(updatedItems));
-    }
-
-    function redirectToIndex() {
-      window.location.href = "file:///C:/wamp64/www/LifeTools/index.html";
     }
   </script>
 

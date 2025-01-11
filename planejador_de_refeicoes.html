@@ -284,7 +284,7 @@
     <div class="meal-list" id="mealList"></div>
 
     <!-- Botão para voltar -->
-    <a href="file:///C:/wamp64/www/LifeTools/index.html" class="back-btn">Voltar</a>
+    <a href="index.html" class="back-btn">Voltar</a>
   </div>
 
   <script>
@@ -360,7 +360,8 @@
       const meal = meals[index];
       document.getElementById('mealName').value = meal.name;
       document.getElementById('mealDesc').value = meal.description;
-      meals.splice(index, 1); // Remove a refeição para não duplicar
+
+      meals.splice(index, 1); // Remove a refeição para ser substituída
       saveToLocalStorage();
       renderMeals();
     }
@@ -372,8 +373,8 @@
       renderMeals();
     }
 
-    // Carregar refeições salvas ao carregar a página
-    window.onload = loadFromLocalStorage;
+    // Carregar as refeições ao iniciar
+    loadFromLocalStorage();
   </script>
 
 </body>

@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Tradutor - Ultra Moderno</title>
+  <title>Tradutor Ultra Moderno</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="icon" href="https://www.gstatic.com/images/branding/product/1x/translate_48dp.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icons.min.css">
   <style>
     * {
       margin: 0;
@@ -115,6 +116,17 @@
       background: #e0e0e0;
     }
 
+    .select-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flag-icon {
+      width: 25px;
+      height: 15px;
+    }
+
     .back-btn {
       padding: 12px;
       background: #e74c3c;
@@ -166,22 +178,25 @@
 </head>
 <body>
   <div class="container">
-    <h1>Google Tradutor</h1>
+    <h1>Tradutor Ultra Moderno</h1>
 
     <div class="input-group">
       <label for="language-from">Idioma de Origem</label>
-      <select id="language-from">
-        <option value="en">Inglês</option>
-        <option value="pt">Português</option>
-        <option value="es">Espanhol</option>
-        <option value="fr">Francês</option>
-        <option value="de">Alemão</option>
-        <option value="it">Italiano</option>
-        <option value="ja">Japonês</option>
-        <option value="ko">Coreano</option>
-        <option value="ru">Russo</option>
-        <option value="zh">Chinês</option>
-      </select>
+      <div class="select-wrapper">
+        <select id="language-from">
+          <option value="en" data-flag="us">Inglês</option>
+          <option value="pt" data-flag="br">Português</option>
+          <option value="es" data-flag="es">Espanhol</option>
+          <option value="fr" data-flag="fr">Francês</option>
+          <option value="de" data-flag="de">Alemão</option>
+          <option value="it" data-flag="it">Italiano</option>
+          <option value="ja" data-flag="jp">Japonês</option>
+          <option value="ko" data-flag="kr">Coreano</option>
+          <option value="ru" data-flag="ru">Russo</option>
+          <option value="zh" data-flag="cn">Chinês</option>
+        </select>
+        <img id="flag-from" class="flag-icon" src="" alt="Flag">
+      </div>
     </div>
 
     <div class="input-group">
@@ -191,30 +206,45 @@
 
     <div class="input-group">
       <label for="language-to">Idioma de Destino</label>
-      <select id="language-to">
-        <option value="en">Inglês</option>
-        <option value="pt">Português</option>
-        <option value="es">Espanhol</option>
-        <option value="fr">Francês</option>
-        <option value="de">Alemão</option>
-        <option value="it">Italiano</option>
-        <option value="ja">Japonês</option>
-        <option value="ko">Coreano</option>
-        <option value="ru">Russo</option>
-        <option value="zh">Chinês</option>
-      </select>
+      <div class="select-wrapper">
+        <select id="language-to">
+          <option value="en" data-flag="us">Inglês</option>
+          <option value="pt" data-flag="br">Português</option>
+          <option value="es" data-flag="es">Espanhol</option>
+          <option value="fr" data-flag="fr">Francês</option>
+          <option value="de" data-flag="de">Alemão</option>
+          <option value="it" data-flag="it">Italiano</option>
+          <option value="ja" data-flag="jp">Japonês</option>
+          <option value="ko" data-flag="kr">Coreano</option>
+          <option value="ru" data-flag="ru">Russo</option>
+          <option value="zh" data-flag="cn">Chinês</option>
+        </select>
+        <img id="flag-to" class="flag-icon" src="" alt="Flag">
+      </div>
     </div>
 
     <div class="translation-output" id="translated-text">
       A tradução aparecerá aqui...
     </div>
 
-    <button class="back-btn" onclick="window.location.href='index.html';">Voltar</button>
+    <!-- Botão Voltar com caminho absoluto -->
+    <button class="back-btn" onclick="window.location.href='/LifeTools/index.html';">Voltar</button>
   </div>
 
   <script>
     const textInput = document.getElementById("text-input");
     const translatedText = document.getElementById("translated-text");
+    const flagFrom = document.getElementById("flag-from");
+    const flagTo = document.getElementById("flag-to");
+
+    // Função para atualizar as flags
+    function updateFlags() {
+      const fromLang = document.getElementById("language-from").value;
+      const toLang = document.getElementById("language-to").value;
+
+      flagFrom.src = `https://flagcdn.com/w20/${document.querySelector(`#language-from option[value=${fromLang}]`).getAttribute("data-flag")}.png`;
+      flagTo.src = `https://flagcdn.com/w20/${document.querySelector(`#language-to option[value=${toLang}]`).getAttribute("data-flag")}.png`;
+    }
 
     // Função para atualizar a tradução ao digitar
     textInput.addEventListener('input', () => {
@@ -230,6 +260,11 @@
       // Simulação de tradução: inverte o texto para fins de demonstração
       translatedText.textContent = `Tradução (${toLang}): ${text.split('').reverse().join('')}`;
     });
+
+    // Inicializa as flags ao carregar a página
+    updateFlags();
+    document.getElementById("language-from").addEventListener("change", updateFlags);
+    document.getElementById("language-to").addEventListener("change", updateFlags);
   </script>
 </body>
 </html>

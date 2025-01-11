@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f7fc;
+            background-color: #f7f9fc;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,83 +17,85 @@
 
         .calculator {
             background: #ffffff;
-            border-radius: 20px;
+            border-radius: 15px;
             padding: 40px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 350px;
+            max-width: 380px;
             text-align: center;
         }
 
         .calculator h1 {
-            font-size: 32px;
-            color: #2f2f2f;
-            margin-bottom: 30px;
-            font-weight: bold;
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
 
         .input-field {
             width: 100%;
             padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            font-size: 18px;
+            margin: 12px 0;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            font-size: 16px;
+            background-color: #fafafa;
             transition: border-color 0.3s ease;
         }
 
         .input-field:focus {
-            border-color: #007bff;
+            border-color: #6200ea;
             outline: none;
         }
 
         .button {
-            background-color: #007bff;
+            background-color: #6200ea;
             color: white;
             padding: 15px;
             border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 18px;
-            transition: background-color 0.3s ease;
-            margin-top: 15px;
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-
-        .back-button {
-            background-color: #6c757d;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             width: 100%;
             font-size: 16px;
+            transition: background-color 0.3s ease;
             margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #3700b3;
+        }
+
+        .back-button {
+            background-color: #999;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 14px;
+            margin-top: 15px;
             transition: background-color 0.3s ease;
         }
 
         .back-button:hover {
-            background-color: #5a6268;
+            background-color: #757575;
         }
 
         .result {
-            margin-top: 30px;
-            font-size: 18px;
+            margin-top: 20px;
+            font-size: 16px;
             color: #333;
-            font-weight: bold;
+            font-weight: 500;
         }
 
+        /* Estilo para o botão de "voltar" em dispositivos móveis */
         @media (max-width: 400px) {
             .calculator {
                 padding: 30px;
             }
             .calculator h1 {
-                font-size: 26px;
+                font-size: 24px;
             }
         }
     </style>
@@ -137,7 +139,7 @@
 
     function goBack() {
         // Caminho relativo ao repositório do GitHub
-        window.location.href = "/index.html"; // Aponte para a página inicial do seu site no GitHub
+        window.location.href = "/index.html"; // Aponte para a página inicial do seu site no GitHub Pages
     }
 </script>
 

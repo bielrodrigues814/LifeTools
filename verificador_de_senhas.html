@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google Tradutor - Ultra Moderno</title>
+  <title>Verificador de Senha - Ultra Moderno</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="https://www.gstatic.com/images/branding/product/1x/translate_48dp.png" type="image/png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -33,15 +33,9 @@
       width: 100%;
       max-width: 800px;
       display: flex;
-      flex-direction: row;
-      gap: 20px;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 30px;
       animation: fadeIn 1s ease-out;
-    }
-
-    .left-section, .right-section {
-      flex: 1;
     }
 
     h1 {
@@ -49,7 +43,7 @@
       font-size: 2.5em;
       font-weight: 700;
       color: #333;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .input-group {
@@ -65,26 +59,60 @@
       color: #333;
     }
 
-    .input-group select, .input-group textarea {
+    .input-group input {
       padding: 12px;
       font-size: 18px;
-      border: 2px solid #3498db;
+      border: none;
       border-radius: 8px;
       outline: none;
-      transition: border-color 0.3s ease;
+      background-color: #f4f4f4;
+      transition: background-color 0.3s ease;
     }
 
-    .input-group select:focus, .input-group textarea:focus {
-      border-color: #8e44ad;
+    .input-group input:focus {
+      background-color: #e0e0e0;
     }
 
-    .input-group textarea {
-      resize: none;
-      height: 150px;
+    .password-feedback {
+      font-size: 18px;
+      color: #333;
+      padding: 10px;
+      border-radius: 8px;
+      background: #f4f4f4;
+    }
+
+    .password-strength {
+      font-size: 16px;
+      padding: 8px;
+      background: #f4f4f4;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .tips-section {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+    }
+
+    .tips-section h3 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+
+    .tips-section ul {
+      list-style: none;
+    }
+
+    .tips-section ul li {
+      margin: 10px 0;
+      color: #3498db;
     }
 
     .btn {
-      width: 100%;
       padding: 16px;
       background: #3498db;
       color: #fff;
@@ -94,6 +122,7 @@
       border-radius: 8px;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.2s ease;
+      width: 100%;
     }
 
     .btn:hover {
@@ -101,31 +130,9 @@
       transform: translateY(-2px);
     }
 
-    .translation-output {
-      padding: 12px;
-      font-size: 18px;
-      border: 2px solid #8e44ad;
-      border-radius: 8px;
-      background: #f4f4f4;
-      color: #333;
-      min-height: 150px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      height: 150px;
-    }
-
     .back-btn {
-      margin-top: 20px;
-      padding: 12px;
       background: #e74c3c;
-      color: #fff;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s ease;
+      margin-top: 20px;
     }
 
     .back-btn:hover {
@@ -136,78 +143,132 @@
       0% { opacity: 0; transform: translateY(-30px); }
       100% { opacity: 1; transform: translateY(0); }
     }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      .input-group input {
+        font-size: 16px;
+      }
+
+      .btn {
+        font-size: 16px;
+        padding: 14px;
+      }
+
+      .tips-section h3 {
+        font-size: 1.3em;
+      }
+    }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <div class="left-section">
-      <h1>Google Tradutor</h1>
+    <h1>Verificador de Senha</h1>
 
-      <div class="input-group">
-        <label for="language-from">Idioma de Origem</label>
-        <select id="language-from">
-          <option value="en">Inglês</option>
-          <option value="pt">Português</option>
-          <option value="es">Espanhol</option>
-          <option value="fr">Francês</option>
-          <option value="de">Alemão</option>
-          <option value="it">Italiano</option>
-          <option value="ja">Japonês</option>
-          <option value="ko">Coreano</option>
-          <option value="ru">Russo</option>
-          <option value="zh">Chinês</option>
-        </select>
-      </div>
-
-      <div class="input-group">
-        <label for="text-input">Texto para Traduzir</label>
-        <textarea id="text-input" placeholder="Digite o texto aqui..."></textarea>
-      </div>
+    <div class="input-group">
+      <label for="password">Digite sua Senha</label>
+      <input type="password" id="password" placeholder="Sua senha aqui...">
     </div>
 
-    <div class="right-section">
-      <div class="input-group">
-        <label for="language-to">Idioma de Destino</label>
-        <select id="language-to">
-          <option value="en">Inglês</option>
-          <option value="pt">Português</option>
-          <option value="es">Espanhol</option>
-          <option value="fr">Francês</option>
-          <option value="de">Alemão</option>
-          <option value="it">Italiano</option>
-          <option value="ja">Japonês</option>
-          <option value="ko">Coreano</option>
-          <option value="ru">Russo</option>
-          <option value="zh">Chinês</option>
-        </select>
-      </div>
+    <div class="password-feedback" id="password-feedback">A senha será analisada...</div>
 
-      <div class="translation-output" id="translated-text">
-        A tradução aparecerá aqui...
-      </div>
+    <div class="password-strength" id="password-strength">Força da senha: -</div>
 
-      <button class="back-btn" onclick="window.location.href='https://seu-usuario.github.io/LifeTools/index.html';">Voltar</button>
+    <button class="btn" onclick="generatePDF()">Salvar Relatório em PDF</button>
+
+    <div class="tips-section">
+      <h3>Dicas para Criar uma Senha Forte</h3>
+      <ul>
+        <li>Use pelo menos 8 caracteres</li>
+        <li>Inclua letras maiúsculas e minúsculas</li>
+        <li>Adicione números</li>
+        <li>Use caracteres especiais (@, #, $, %, etc.)</li>
+        <li>Evite palavras comuns ou sequências de números</li>
+      </ul>
     </div>
+
+    <!-- Botão Voltar -->
+    <a href="index.html">
+      <button class="btn back-btn">Voltar</button>
+    </a>
+
   </div>
 
   <script>
-    const textInput = document.getElementById("text-input");
-    const translatedText = document.getElementById("translated-text");
+    const passwordInput = document.getElementById("password");
+    const passwordFeedback = document.getElementById("password-feedback");
+    const passwordStrength = document.getElementById("password-strength");
 
-    // Função para atualizar a tradução ao digitar
-    textInput.addEventListener('input', () => {
-      const fromLang = document.getElementById("language-from").value;
-      const toLang = document.getElementById("language-to").value;
-      const text = textInput.value;
-
-      if (!text.trim()) {
-        translatedText.textContent = "A tradução aparecerá aqui...";
-        return;
-      }
-
-      // Simulação de tradução: inverte o texto para fins de demonstração
-      translatedText.textContent = `Tradução (${toLang}): ${text.split('').reverse().join('')}`;
+    // Função para avaliar a força da senha
+    passwordInput.addEventListener('input', () => {
+      const password = passwordInput.value;
+      evaluatePasswordStrength(password);
     });
+
+    function evaluatePasswordStrength(password) {
+      let strength = 0;
+      const criteria = [
+        /[a-z]/, // Letras minúsculas
+        /[A-Z]/, // Letras maiúsculas
+        /[0-9]/, // Números
+        /[!@#$%^&*(),.?":{}|<>]/ // Caracteres especiais
+      ];
+
+      criteria.forEach(regex => {
+        if (regex.test(password)) strength++;
+      });
+
+      let strengthText = 'Muito Fraca';
+      if (strength === 1) strengthText = 'Fraca';
+      if (strength === 2) strengthText = 'Moderada';
+      if (strength === 3) strengthText = 'Forte';
+      if (strength === 4) strengthText = 'Muito Forte';
+
+      passwordStrength.textContent = `Força da senha: ${strengthText}`;
+
+      if (password.length < 8) {
+        passwordFeedback.textContent = "A senha deve ter pelo menos 8 caracteres.";
+        passwordFeedback.style.color = 'red';
+      } else {
+        passwordFeedback.textContent = "Senha válida!";
+        passwordFeedback.style.color = 'green';
+      }
+    }
+
+    // Função para gerar o PDF
+    function generatePDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      
+      doc.setFontSize(20);
+      doc.text('Relatório de Verificação de Senha', 20, 20);
+      doc.setFontSize(16);
+      doc.text('Senha Analisada: ' + passwordInput.value, 20, 40);
+      doc.text('Força da Senha: ' + passwordStrength.textContent.split(": ")[1], 20, 50);
+      doc.text('Dicas de Senha:', 20, 60);
+
+      const tips = [
+        'Use pelo menos 8 caracteres',
+        'Inclua letras maiúsculas e minúsculas',
+        'Adicione números',
+        'Use caracteres especiais (@, #, $, %, etc.)',
+        'Evite palavras comuns ou sequências de números'
+      ];
+
+      tips.forEach((tip, index) => {
+        doc.text(`${index + 1}. ${tip}`, 20, 70 + (index * 10));
+      });
+
+      doc.save('relatorio_senha.pdf');
+    }
   </script>
 </body>
 </html>

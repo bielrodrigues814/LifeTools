@@ -1,208 +1,249 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banco de Ideias Criativas</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f4f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizador de Fotos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #6e7a94, #3f4a61);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      color: #fff;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 800px;
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            color: #333;
-        }
+    .container {
+      text-align: center;
+      width: 90%;
+      max-width: 900px;
+      background-color: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 30px;
+      overflow: hidden;
+      position: relative;
+    }
 
-        h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #4CAF50;
-            font-weight: bold;
-        }
+    h1 {
+      font-size: 3em;
+      color: #333;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
 
-        .input-area {
-            margin-bottom: 20px;
-        }
+    .options {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 40px;
+    }
 
-        .input-area textarea {
-            width: 100%;
-            height: 120px;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            resize: none;
-            outline: none;
-            transition: border-color 0.3s;
-        }
+    .options button {
+      padding: 15px 40px;
+      font-size: 1.3em;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
 
-        .input-area textarea:focus {
-            border-color: #4CAF50;
-        }
+    .options button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
 
-        .button {
-            background-color: #28a745;
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            margin-top: 20px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 18px;
-            transition: background-color 0.3s;
-        }
+    .options button:active {
+      transform: scale(1);
+    }
 
-        .button:hover {
-            background-color: #218838;
-        }
+    .camera-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .button:active {
-            background-color: #1e7e34;
-        }
+    #camera {
+      border: 5px solid #007bff;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .ideas-container {
-            margin-top: 30px;
-        }
+    #take-photo {
+      padding: 12px 24px;
+      font-size: 1.3em;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-        .idea {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-left: 5px solid #28a745;
-            border-radius: 8px;
-            text-align: left;
-            transition: background-color 0.3s;
-        }
+    #take-photo:hover {
+      background-color: #218838;
+    }
 
-        .idea:hover {
-            background-color: #e9f7e9;
-        }
+    .gallery {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
 
-        .back-button {
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 6px;
-            font-size: 1.2em;
-            margin-top: 20px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .back-button:hover {
-            background-color: #0056b3;
-        }
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
 
-        .back-button:active {
-            background-color: #004085;
-        }
+    #photo-canvas {
+      display: none;
+    }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
 
-            .input-area textarea {
-                padding: 12px;
-                font-size: 14px;
-            }
+    .back-button:hover {
+      background-color: #d32f2f;
+      transform: scale(1.05);
+    }
 
-            .button {
-                font-size: 16px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            .idea {
-                padding: 12px;
-                font-size: 14px;
-            }
-        }
-    </style>
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Banco de Ideias Criativas</h1>
+  <div class="container">
+    <button class="back-button" id="back-button">Voltar</button>
 
-    <div class="input-area">
-        <textarea id="userIdea" placeholder="Digite sua ideia..."></textarea>
+    <h1>Organizador de Fotos</h1>
+
+    <!-- Opções de ação -->
+    <div class="options">
+      <button id="add-photo">Adicionar Fotos</button>
+      <button id="take-photo-btn">Tirar Fotos</button>
+      <button id="save-photos">Guardar Fotos</button>
     </div>
 
-    <button class="button" onclick="generateIdeas()">Gerar Ideias</button>
-
-    <div class="ideas-container" id="ideasContainer">
-        <!-- As ideias geradas aparecerão aqui -->
+    <!-- Área de Tirar Foto -->
+    <div class="camera-container" id="camera-container">
+      <video id="camera" width="320" height="240" autoplay></video>
+      <button id="take-photo">Tirar Foto</button>
+      <canvas id="photo-canvas"></canvas>
     </div>
 
-    <!-- Botão Voltar -->
-    <a href="index.html" class="back-button">Voltar</a>
-</div>
+    <!-- Galeria de Fotos -->
+    <div class="gallery" id="photo-gallery"></div>
+  </div>
 
-<script>
-    // Função simulada para gerar ideias melhores com base na ideia do usuário
-    function generateIdeas() {
-        const userIdea = document.getElementById('userIdea').value.trim();
+  <script>
+    const addPhotoButton = document.getElementById('add-photo');
+    const takePhotoButton = document.getElementById('take-photo-btn');
+    const savePhotosButton = document.getElementById('save-photos');
+    const cameraContainer = document.getElementById('camera-container');
+    const camera = document.getElementById('camera');
+    const takePhoto = document.getElementById('take-photo');
+    const photoCanvas = document.getElementById('photo-canvas');
+    const photoGallery = document.getElementById('photo-gallery');
+    const backButton = document.getElementById('back-button');
 
-        if (userIdea === "") {
-            alert("Por favor, insira sua ideia antes de gerar sugestões.");
-            return;
-        }
+    let photos = JSON.parse(localStorage.getItem('photos')) || [];
 
-        // Simulando o comportamento de uma IA gerando ideias mais criativas
-        const ideas = [
-            "Transforme sua ideia em um produto sustentável com impacto social positivo.",
-            "Aplique sua ideia em uma plataforma digital para alcançar uma audiência global.",
-            "Incorpore a ideia em um projeto colaborativo de rede social com funcionalidades inovadoras.",
-            "Revise a ideia para integrar tecnologias emergentes como IA ou Blockchain.",
-            "Crie uma solução híbrida entre o físico e o digital que ofereça experiências imersivas.",
-            "Explore parcerias com influencers para expandir a visibilidade da sua ideia.",
-            "Proponha a ideia como uma solução para um problema específico de uma comunidade.",
-            "Use design de interface (UI/UX) inovador para aumentar a interação do usuário."
-        ];
-
-        // Gerar um número aleatório de 3 ideias a partir da lista
-        const generatedIdeas = [];
-        const randomIndexes = [];
-        
-        while (generatedIdeas.length < 3) {
-            const index = Math.floor(Math.random() * ideas.length);
-            if (!randomIndexes.includes(index)) {
-                randomIndexes.push(index);
-                generatedIdeas.push(ideas[index]);
-            }
-        }
-
-        // Exibir as ideias geradas na interface
-        const ideasContainer = document.getElementById('ideasContainer');
-        ideasContainer.innerHTML = '';
-
-        generatedIdeas.forEach(idea => {
-            const ideaElement = document.createElement('div');
-            ideaElement.classList.add('idea');
-            ideaElement.textContent = idea;
-            ideasContainer.appendChild(ideaElement);
-        });
+    // Função para iniciar a câmera
+    async function startCamera() {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      camera.srcObject = stream;
+      cameraContainer.style.display = 'flex';
     }
-</script>
+
+    // Função para tirar foto
+    function capturePhoto() {
+      const context = photoCanvas.getContext('2d');
+      context.drawImage(camera, 0, 0, photoCanvas.width, photoCanvas.height);
+      const imageData = photoCanvas.toDataURL('image/png');
+      photos.push(imageData);
+      displayPhotos();
+    }
+
+    // Função para exibir as fotos
+    function displayPhotos() {
+      photoGallery.innerHTML = '';
+      photos.forEach(photo => {
+        const img = document.createElement('img');
+        img.src = photo;
+        photoGallery.appendChild(img);
+      });
+    }
+
+    // Função para adicionar foto
+    addPhotoButton.addEventListener('click', () => {
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = 'image/*';
+      fileInput.onchange = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = () => {
+          photos.push(reader.result);
+          displayPhotos();
+        };
+        reader.readAsDataURL(file);
+      };
+      fileInput.click();
+    });
+
+    // Função para ativar a câmera ao clicar no botão "Tirar Foto"
+    takePhotoButton.addEventListener('click', () => {
+      startCamera();
+    });
+
+    // Função para tirar foto
+    takePhoto.addEventListener('click', capturePhoto);
+
+    // Função para guardar fotos
+    savePhotosButton.addEventListener('click', () => {
+      localStorage.setItem('photos', JSON.stringify(photos));
+      alert('Fotos guardadas com sucesso!');
+    });
+
+    // Recupera as fotos ao iniciar
+    window.onload = displayPhotos;
+
+    // Função para voltar para a página anterior
+    backButton.addEventListener('click', () => {
+      window.location.href = 'index.html'; // URL relativa ou a URL que você deseja redirecionar
+    });
+
+    // Inicializa a página
+    photoCanvas.width = 320;
+    photoCanvas.height = 240;
+  </script>
 
 </body>
 </html>

@@ -29,11 +29,11 @@
     /* Container principal */
     .container {
       width: 100%;
-      max-width: 1000px;
+      max-width: 900px;
       background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 15px;
+      border-radius: 20px;
       padding: 30px;
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -42,9 +42,11 @@
 
     /* Título */
     h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       color: #333;
       margin-bottom: 20px;
+      font-weight: 700;
+      text-align: center;
     }
 
     /* Formulário para adicionar hábitos */
@@ -71,33 +73,34 @@
     .input-group textarea {
       width: 100%;
       padding: 12px;
-      font-size: 1rem;
-      border: 2px solid #ddd;
-      border-radius: 8px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 12px;
       background-color: #f9f9f9;
       outline: none;
-      transition: border 0.3s ease, background-color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .input-group input:focus,
     .input-group textarea:focus {
-      border-color: #007bff;
-      background-color: #ffffff;
+      background-color: #fff;
+      box-shadow: 0 0 5px rgba(0, 179, 255, 0.6);
     }
 
     .add-habit-btn {
-      padding: 12px 20px;
+      padding: 12px 24px;
       background-color: #007bff;
       color: white;
       font-size: 1.2rem;
-      border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      border: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .add-habit-btn:hover {
       background-color: #0056b3;
+      transform: translateY(-2px);
     }
 
     /* Listagem de hábitos */
@@ -108,18 +111,18 @@
 
     .habit-item {
       background-color: #fff;
-      border-radius: 8px;
-      padding: 15px;
-      margin-bottom: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: transform 0.2s ease;
+      transition: all 0.2s ease;
     }
 
     .habit-item:hover {
-      transform: scale(1.05);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     }
 
     .habit-name {
@@ -141,10 +144,15 @@
     }
 
     .habit-checkbox {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       margin-right: 10px;
       cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .habit-checkbox:checked {
+      transform: scale(1.1);
     }
 
     /* Tema alternativo */
@@ -160,38 +168,40 @@
 
     /* Alternar tema */
     .theme-toggle-btn {
-      padding: 10px 20px;
+      padding: 12px 24px;
       background-color: #00c6ff;
       color: white;
       border-radius: 12px;
       margin-top: 30px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .theme-toggle-btn:hover {
       background-color: #0099cc;
+      transform: translateY(-2px);
     }
 
     /* Estilo para o botão voltar */
     .back-btn {
-      padding: 12px 25px;
+      padding: 12px 24px;
       background-color: #ff4d4d;
       color: white;
       font-size: 1.2rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       margin-top: 20px;
       cursor: pointer;
       text-decoration: none;
       text-align: center;
       width: 200px;
       display: block;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .back-btn:hover {
       background-color: #e60000;
+      transform: translateY(-2px);
     }
 
     /* Responsividade */
@@ -201,39 +211,27 @@
       }
 
       h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
       }
 
       .habit-form input,
       .habit-form textarea {
-        font-size: 0.9rem;
+        font-size: 1rem;
       }
 
       .add-habit-btn {
         font-size: 1rem;
-        padding: 10px 18px;
+        padding: 10px 20px;
       }
 
       .theme-toggle-btn {
         font-size: 1rem;
-        padding: 8px 16px;
+        padding: 10px 20px;
       }
 
       .back-btn {
         font-size: 1rem;
         padding: 10px 20px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .habit-item {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .checkbox-container {
-        margin-top: 10px;
-        align-self: flex-start;
       }
     }
 
@@ -262,7 +260,7 @@
     <button class="theme-toggle-btn" onclick="toggleTheme()">Alternar Tema</button>
 
     <!-- Botão Voltar -->
-    <a href="/index.html" class="back-btn">Voltar</a>
+    <a href="index.html" class="back-btn">Voltar</a>
   </div>
 
   <script>
@@ -311,27 +309,26 @@
             <div class="habit-desc">${habit.description}</div>
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" class="habit-checkbox" onclick="toggleHabitCompletion(${index})" ${habit.completed ? 'checked' : ''}>
+            <input class="habit-checkbox" type="checkbox" ${habit.completed ? 'checked' : ''} onclick="toggleCompletion(${index})" />
           </div>
         `;
-
+        
         habitListContainer.appendChild(habitItem);
       });
     }
 
-    // Função para marcar ou desmarcar um hábito como concluído
-    function toggleHabitCompletion(index) {
+    // Função para alternar a marcação de completado
+    function toggleCompletion(index) {
       habits[index].completed = !habits[index].completed;
       renderHabits();
     }
 
-    // Função para alternar entre modo claro e escuro
+    // Função para alternar tema
     function toggleTheme() {
       isDarkMode = !isDarkMode;
       document.body.classList.toggle('dark-mode', isDarkMode);
     }
-
   </script>
-
+  
 </body>
 </html>

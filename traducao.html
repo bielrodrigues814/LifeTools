@@ -31,17 +31,11 @@
       border-radius: 20px;
       box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 800px;
+      max-width: 1000px;
       display: flex;
-      flex-direction: row;
-      gap: 20px;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 30px;
       animation: fadeIn 1s ease-out;
-    }
-
-    .left-section, .right-section {
-      flex: 1;
     }
 
     h1 {
@@ -49,7 +43,7 @@
       font-size: 2.5em;
       font-weight: 700;
       color: #333;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     .input-group {
@@ -68,14 +62,15 @@
     .input-group select, .input-group textarea {
       padding: 12px;
       font-size: 18px;
-      border: 2px solid #3498db;
+      border: none;
       border-radius: 8px;
       outline: none;
-      transition: border-color 0.3s ease;
+      background-color: #f4f4f4;
+      transition: background-color 0.3s ease;
     }
 
     .input-group select:focus, .input-group textarea:focus {
-      border-color: #8e44ad;
+      background-color: #e0e0e0;
     }
 
     .input-group textarea {
@@ -84,7 +79,6 @@
     }
 
     .btn {
-      width: 100%;
       padding: 16px;
       background: #3498db;
       color: #fff;
@@ -102,9 +96,9 @@
     }
 
     .translation-output {
-      padding: 12px;
+      padding: 16px;
       font-size: 18px;
-      border: 2px solid #8e44ad;
+      border: none;
       border-radius: 8px;
       background: #f4f4f4;
       color: #333;
@@ -114,10 +108,14 @@
       justify-content: center;
       text-align: center;
       height: 150px;
+      transition: background 0.3s ease;
+    }
+
+    .translation-output:hover {
+      background: #e0e0e0;
     }
 
     .back-btn {
-      margin-top: 20px;
       padding: 12px;
       background: #e74c3c;
       color: #fff;
@@ -136,58 +134,82 @@
       0% { opacity: 0; transform: translateY(-30px); }
       100% { opacity: 1; transform: translateY(0); }
     }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      .input-group select, .input-group textarea {
+        font-size: 16px;
+      }
+
+      .btn {
+        font-size: 16px;
+        padding: 14px;
+      }
+
+      .back-btn {
+        font-size: 16px;
+        padding: 14px;
+      }
+
+      .translation-output {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="left-section">
-      <h1>Google Tradutor</h1>
+    <h1>Google Tradutor</h1>
 
-      <div class="input-group">
-        <label for="language-from">Idioma de Origem</label>
-        <select id="language-from">
-          <option value="en">Inglês</option>
-          <option value="pt">Português</option>
-          <option value="es">Espanhol</option>
-          <option value="fr">Francês</option>
-          <option value="de">Alemão</option>
-          <option value="it">Italiano</option>
-          <option value="ja">Japonês</option>
-          <option value="ko">Coreano</option>
-          <option value="ru">Russo</option>
-          <option value="zh">Chinês</option>
-        </select>
-      </div>
-
-      <div class="input-group">
-        <label for="text-input">Texto para Traduzir</label>
-        <textarea id="text-input" placeholder="Digite o texto aqui..."></textarea>
-      </div>
+    <div class="input-group">
+      <label for="language-from">Idioma de Origem</label>
+      <select id="language-from">
+        <option value="en">Inglês</option>
+        <option value="pt">Português</option>
+        <option value="es">Espanhol</option>
+        <option value="fr">Francês</option>
+        <option value="de">Alemão</option>
+        <option value="it">Italiano</option>
+        <option value="ja">Japonês</option>
+        <option value="ko">Coreano</option>
+        <option value="ru">Russo</option>
+        <option value="zh">Chinês</option>
+      </select>
     </div>
 
-    <div class="right-section">
-      <div class="input-group">
-        <label for="language-to">Idioma de Destino</label>
-        <select id="language-to">
-          <option value="en">Inglês</option>
-          <option value="pt">Português</option>
-          <option value="es">Espanhol</option>
-          <option value="fr">Francês</option>
-          <option value="de">Alemão</option>
-          <option value="it">Italiano</option>
-          <option value="ja">Japonês</option>
-          <option value="ko">Coreano</option>
-          <option value="ru">Russo</option>
-          <option value="zh">Chinês</option>
-        </select>
-      </div>
-
-      <div class="translation-output" id="translated-text">
-        A tradução aparecerá aqui...
-      </div>
-
-      <button class="back-btn" onclick="window.location.href='index.html';">Voltar</button>
+    <div class="input-group">
+      <label for="text-input">Texto para Traduzir</label>
+      <textarea id="text-input" placeholder="Digite o texto aqui..."></textarea>
     </div>
+
+    <div class="input-group">
+      <label for="language-to">Idioma de Destino</label>
+      <select id="language-to">
+        <option value="en">Inglês</option>
+        <option value="pt">Português</option>
+        <option value="es">Espanhol</option>
+        <option value="fr">Francês</option>
+        <option value="de">Alemão</option>
+        <option value="it">Italiano</option>
+        <option value="ja">Japonês</option>
+        <option value="ko">Coreano</option>
+        <option value="ru">Russo</option>
+        <option value="zh">Chinês</option>
+      </select>
+    </div>
+
+    <div class="translation-output" id="translated-text">
+      A tradução aparecerá aqui...
+    </div>
+
+    <button class="back-btn" onclick="window.location.href='index.html';">Voltar</button>
   </div>
 
   <script>

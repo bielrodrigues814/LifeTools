@@ -13,7 +13,7 @@
 
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #f4f4f4;
+      background-color: #f0f2f5;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -23,18 +23,24 @@
 
     .container {
       background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 600px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      box-sizing: border-box;
+      padding: 40px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 700px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .container:hover {
+      transform: scale(1.02);
     }
 
     h1 {
       text-align: center;
       margin-bottom: 20px;
+      font-size: 2rem;
       color: #333;
+      font-weight: 600;
     }
 
     .input-container {
@@ -44,24 +50,32 @@
     .input-container input,
     .input-container button {
       width: 100%;
-      padding: 12px;
-      font-size: 16px;
+      padding: 15px;
+      font-size: 18px;
       margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background-color: #f9f9f9;
+      transition: 0.3s ease-in-out;
+    }
+
+    .input-container input:focus,
+    .input-container button:focus {
+      outline: none;
+      border-color: #3498db;
     }
 
     .input-container button {
-      background-color: #4CAF50;
-      color: white;
+      background-color: #3498db;
+      color: #fff;
       cursor: pointer;
+      font-weight: bold;
       border: none;
       transition: background-color 0.3s ease;
     }
 
     .input-container button:hover {
-      background-color: #45a049;
+      background-color: #2980b9;
     }
 
     .item-list {
@@ -74,55 +88,59 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px;
-      margin-bottom: 10px;
-      background-color: #f9f9f9;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      margin-bottom: 12px;
+      background-color: #fafafa;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: background-color 0.3s ease-in-out;
     }
 
-    .item-list li span {
-      font-size: 16px;
-      color: #333;
+    .item-list li:hover {
+      background-color: #f1f1f1;
     }
 
     .item-list button {
-      background-color: #FF6347;
+      background-color: #e74c3c;
       color: white;
       border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
       cursor: pointer;
-      padding: 6px 12px;
-      border-radius: 5px;
       transition: background-color 0.3s ease;
     }
 
     .item-list button:hover {
-      background-color: #e55347;
+      background-color: #c0392b;
     }
 
     .total {
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 600;
+      color: #333;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 30px;
     }
 
     .back-button {
-      display: block;
+      display: inline-block;
       margin-top: 30px;
       text-align: center;
       font-size: 18px;
       text-decoration: none;
       color: #fff;
       background-color: #007bff;
-      padding: 12px 20px;
-      border-radius: 5px;
+      padding: 14px 28px;
+      border-radius: 8px;
       text-transform: uppercase;
-      transition: background-color 0.3s ease;
+      letter-spacing: 1px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
     .back-button:hover {
       background-color: #0056b3;
+      transform: translateY(-2px);
     }
 
     /* Responsividade */
@@ -137,8 +155,8 @@
 
       .input-container input,
       .input-container button {
-        font-size: 14px;
-        padding: 10px;
+        font-size: 16px;
+        padding: 12px;
       }
     }
 
@@ -160,7 +178,7 @@
     <div class="total" id="total">Total: R$ 0.00</div>
 
     <!-- Botão Voltar para a interface principal -->
-    <a href="/index.html" class="back-button">Voltar para a Interface Principal</a>
+    <a href="index.html" class="back-button">Voltar para a Interface Principal</a>
   </div>
 
   <script>
@@ -180,7 +198,7 @@
 
       // Adicionar item à lista
       const li = document.createElement('li');
-      li.innerHTML = `
+      li.innerHTML = ` 
         <span>${itemName} - R$ ${itemPrice.toFixed(2)}</span>
         <button onclick="removeItem(this, ${itemPrice})">Remover</button>
       `;
@@ -189,7 +207,7 @@
       // Atualizar total
       totalAmount += itemPrice;
       updateTotal();
-      
+
       // Limpar campos
       document.getElementById('itemName').value = '';
       document.getElementById('itemPrice').value = '';

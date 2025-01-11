@@ -46,6 +46,7 @@
       color: #333;
       margin-bottom: 20px;
       text-align: center;
+      font-weight: 600;
     }
 
     /* Formulário para adicionar palavras */
@@ -73,16 +74,16 @@
       width: 100%;
       padding: 12px;
       font-size: 1rem;
-      border: 2px solid #ddd;
       border-radius: 8px;
       background-color: #f9f9f9;
       outline: none;
-      transition: border 0.3s ease, background-color 0.3s ease;
+      transition: background-color 0.3s ease;
+      border: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .input-group input:focus,
     .input-group textarea:focus {
-      border-color: #007bff;
       background-color: #ffffff;
     }
 
@@ -290,7 +291,7 @@
     <div class="word-list" id="wordList"></div>
 
     <!-- Botão para voltar -->
-    <a href="/index.html" class="back-btn">Voltar</a>
+    <a href="index.html" class="back-btn">Voltar</a>
 
     <!-- Botões para compartilhar -->
     <div class="share-btns">

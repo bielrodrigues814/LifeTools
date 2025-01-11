@@ -229,40 +229,81 @@
   </div>
 
   <script>
+    // Função para carregar receitas do LocalStorage
+    function loadRecipes() {
+        const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
+        const recipeList = document.getElementById('recipe-list');
+
+        savedRecipes.forEach(recipe => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = ` 
+                <strong>${recipe.name}</strong><br>
+                <strong>Ingredientes:</strong> ${recipe.ingredients}<br>
+                <strong>Modo de Preparo:</strong> ${recipe.instructions}
+                <button onclick="deleteRecipe(this)">Excluir</button>
+            `;
+            recipeList.appendChild(listItem);
+        });
+    }
+
+    // Função para salvar receitas no LocalStorage
+    function saveRecipes() {
+        const recipeList = document.getElementById('recipe-list');
+        const recipes = [];
+
+        recipeList.querySelectorAll('li').forEach(item => {
+            const name = item.querySelector('strong:nth-child(1)').innerText;
+            const ingredients = item.querySelector('strong:nth-child(3)').nextSibling.nodeValue.trim();
+            const instructions = item.querySelector('strong:nth-child(5)').nextSibling.nodeValue.trim();
+
+            recipes.push({ name, ingredients, instructions });
+        });
+
+        localStorage.setItem('recipes', JSON.stringify(recipes));
+    }
+
     // Função para adicionar nova receita
     function addRecipe() {
-      const name = document.getElementById('recipe-name').value;
-      const ingredients = document.getElementById('recipe-ingredients').value;
-      const instructions = document.getElementById('recipe-instructions').value;
+        const name = document.getElementById('recipe-name').value;
+        const ingredients = document.getElementById('recipe-ingredients').value;
+        const instructions = document.getElementById('recipe-instructions').value;
 
-      if (name && ingredients && instructions) {
-        const recipeList = document.getElementById('recipe-list');
-        
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `
+        if (name && ingredients && instructions) {
+            const recipeList = document.getElementById('recipe-list');
+            
+            const listItem = document.createElement('li');
+            listItem.innerHTML = ` 
+                <strong>${name}</strong><br>
+                <strong>Ingredientes:</strong> ${ingredients}<br>
+                <strong>Modo de Preparo:</strong> ${instructions}
+                <button onclick="deleteRecipe(this)">Excluir</button>
+            `;
 
-          <strong>${name}</strong><br>
-          <strong>Ingredientes:</strong> ${ingredients}<br>
-          <strong>Modo de Preparo:</strong> ${instructions}
-          <button onclick="deleteRecipe(this)">Excluir</button>
-        `;
+            recipeList.appendChild(listItem);
 
-        recipeList.appendChild(listItem);
+            // Salvar receitas no LocalStorage
+            saveRecipes();
 
-        // Limpar os campos após adicionar
-        document.getElementById('recipe-name').value = '';
-        document.getElementById('recipe-ingredients').value = '';
-        document.getElementById('recipe-instructions').value = '';
-      } else {
-        alert('Por favor, preencha todos os campos!');
-      }
+            // Limpar os campos após adicionar
+            document.getElementById('recipe-name').value = '';
+            document.getElementById('recipe-ingredients').value = '';
+            document.getElementById('recipe-instructions').value = '';
+        } else {
+            alert('Por favor, preencha todos os campos!');
+        }
     }
 
     // Função para excluir uma receita
     function deleteRecipe(button) {
-      const listItem = button.parentElement;
-      listItem.remove();
+        const listItem = button.parentElement;
+        listItem.remove();
+
+        // Salvar receitas atualizadas no LocalStorage
+        saveRecipes();
     }
+
+    // Carregar receitas ao abrir a página
+    window.onload = loadRecipes;
   </script>
 
 </body>

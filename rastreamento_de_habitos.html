@@ -265,8 +265,14 @@
 
   <script>
     // Variáveis de controle
-    let habits = [];
-    let isDarkMode = false;
+    let habits = JSON.parse(localStorage.getItem('habits')) || [];
+    let isDarkMode = JSON.parse(localStorage.getItem('isDarkMode')) || false;
+
+    // Função para salvar dados no LocalStorage
+    function saveToLocalStorage() {
+      localStorage.setItem('habits', JSON.stringify(habits));
+      localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+    }
 
     // Função para adicionar hábitos
     function addHabit() {
@@ -283,6 +289,7 @@
         habits.push(habit);
         renderHabits();
         clearInputFields();
+        saveToLocalStorage();
       } else {
         alert("Por favor, preencha todos os campos.");
       }
@@ -321,14 +328,23 @@
     function toggleCompletion(index) {
       habits[index].completed = !habits[index].completed;
       renderHabits();
+      saveToLocalStorage();
     }
 
     // Função para alternar tema
     function toggleTheme() {
       isDarkMode = !isDarkMode;
       document.body.classList.toggle('dark-mode', isDarkMode);
+      saveToLocalStorage();
     }
+
+    // Inicialização
+    function initialize() {
+      document.body.classList.toggle('dark-mode', isDarkMode);
+      renderHabits();
+    }
+
+    initialize();
   </script>
-  
 </body>
 </html>

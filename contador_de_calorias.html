@@ -264,7 +264,7 @@
         </div>
 
         <!-- Link para voltar -->
-        <a href="index.html" class="back-button">Voltar</a>
+        <a href="file:///C:/wamp64/www/LifeTools/index.html" class="back-button">Voltar</a>
     </div>
 
     <!-- Modal de sucesso -->
@@ -317,10 +317,43 @@
             li.textContent = `${mealName}: ${calories} calorias`;
             historyList.appendChild(li);
 
+            // Atualizar armazenamento local
+            saveData();
+
             // Mostrar sucesso e limpar campos
             showSuccessModal();
             document.getElementById('mealName').value = '';
             document.getElementById('calories').value = '';
+        }
+
+        // Função para salvar dados no localStorage
+        function saveData() {
+            const meals = JSON.parse(localStorage.getItem('meals')) || [];
+            meals.push({ mealName: document.getElementById('mealName').value, calories: document.getElementById('calories').value });
+            localStorage.setItem('meals', JSON.stringify(meals));
+
+            localStorage.setItem('totalCalories', totalCalories);
+            localStorage.setItem('calorieGoal', calorieGoal);
+        }
+
+        // Função para carregar dados do localStorage
+        function loadData() {
+            const savedTotalCalories = localStorage.getItem('totalCalories');
+            const savedCalorieGoal = localStorage.getItem('calorieGoal');
+            const savedMeals = JSON.parse(localStorage.getItem('meals')) || [];
+
+            if (savedTotalCalories) {
+                totalCalories = parseInt(savedTotalCalories);
+                calorieGoal = parseInt(savedCalorieGoal);
+
+                caloriesProgress.textContent = `Total de calorias consumidas: ${totalCalories} / ${calorieGoal || 0}`;
+            }
+
+            savedMeals.forEach(meal => {
+                const li = document.createElement('li');
+                li.textContent = `${meal.mealName}: ${meal.calories} calorias`;
+                historyList.appendChild(li);
+            });
         }
 
         // Função para mostrar o modal de sucesso
@@ -350,6 +383,11 @@
             if (event.target === successModal || event.target === errorModal) {
                 closeModal();
             }
+        }
+
+        // Carregar dados quando a página for carregada
+        window.onload = function() {
+            loadData();
         }
     </script>
 </body>

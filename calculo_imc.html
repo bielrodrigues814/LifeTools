@@ -112,6 +112,7 @@
 </div>
 
 <script>
+    // Função para calcular o IMC
     function calculateIMC() {
         const weight = parseFloat(document.getElementById("weight").value);
         const height = parseFloat(document.getElementById("height").value);
@@ -135,12 +136,32 @@
         }
         
         document.getElementById("result").textContent = `Seu IMC é ${imc.toFixed(2)} - ${classification}`;
+
+        // Salvar os valores no localStorage
+        localStorage.setItem("weight", weight);
+        localStorage.setItem("height", height);
     }
 
-    function goBack() {
-        // Caminho relativo ao repositório do GitHub
-        window.location.href = "/index.html"; // Aponte para a página inicial do seu site no GitHub Pages
+    // Função para carregar os valores salvos no localStorage
+    function loadStoredValues() {
+        const storedWeight = localStorage.getItem("weight");
+        const storedHeight = localStorage.getItem("height");
+
+        if (storedWeight && storedHeight) {
+            document.getElementById("weight").value = storedWeight;
+            document.getElementById("height").value = storedHeight;
+        }
     }
+
+    // Função para voltar para a página inicial
+    function goBack() {
+        window.location.href = "file:///C:/wamp64/www/LifeTools/index.html"; // Caminho local para desenvolvimento
+        // Para o GitHub Pages, altere para:
+        // window.location.href = "/index.html";
+    }
+
+    // Carregar os valores salvos ao carregar a página
+    window.onload = loadStoredValues;
 </script>
 
 </body>

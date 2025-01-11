@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LifeTools - Seu App do Dia a Dia</title>
-  <style>  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
     * {
       margin: 0;
       padding: 0;
@@ -47,7 +48,7 @@
 
     .sidebar {
       width: 250px;
-      background-color: #333;
+      background-color: #007BFF;
       color: white;
       padding: 20px;
       position: fixed;
@@ -72,32 +73,44 @@
       color: white;
       text-decoration: none;
       font-size: 18px;
-      display: block;
+      display: flex;
+      align-items: center;
       transition: all 0.3s ease;
+      padding: 10px;
+      border-radius: 5px;
     }
 
     .sidebar a:hover {
-      background-color: #575757;
+      background-color: #0056b3;
       padding-left: 10px;
     }
 
-    .sidebar a.sobre-app {
-      background-color: #007BFF;
-      color: white;
+    .sidebar a.sobre-app,
+    .sidebar a.politica-uso {
+      background-color: #28a745;
       font-weight: bold;
-      border-radius: 5px;
-      padding: 10px;
     }
 
-    .sidebar a.sobre-app:hover {
-      background-color: #0056b3;
-      padding-left: 15px;
+    .sidebar a.sobre-app:hover,
+    .sidebar a.politica-uso:hover {
+      background-color: #218838;
+      padding-left: 10px;
+    }
+
+    .sidebar i {
+      margin-right: 10px;
+      font-size: 22px;
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar a:hover i {
+      transform: scale(1.2);
     }
 
     .menu-toggle {
       width: 50px;
       height: 50px;
-      background-color: #333;
+      background-color: #007BFF;
       color: white;
       position: fixed;
       top: 10px;
@@ -122,19 +135,22 @@
       justify-content: center;
       align-items: center;
       position: relative;
+      overflow: hidden;
     }
 
     .image-container img {
-      max-width: 90%;
+      width: 100%;
       height: auto;
-      transition: opacity 1s ease-in-out;
       position: absolute;
-      display: none;
+      transition: transform 1s ease-in-out;
     }
 
     .image-container img.active {
-      display: block;
-      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .image-container img.next {
+      transform: translateX(100%);
     }
 
     @media (max-width: 768px) {
@@ -148,6 +164,14 @@
 
       .image-container {
         margin-left: 0;
+      }
+    }
+
+    /* Responsividade das imagens no carrossel */
+    @media (max-width: 480px) {
+      .image-container img {
+        max-width: 100%;
+        height: auto;
       }
     }
   </style>
@@ -166,28 +190,29 @@
     <!-- Menu lateral -->
     <nav class="sidebar">
       <ul>
-        <li><a href="agenda_de_tarefas.html">Agenda de Tarefas</a></li>
-        <li><a href="conversor_de_unidades.html">Conversor de Unidades</a></li>
-        <li><a href="calculadora.html">Calculadora Simples</a></li>
-        <li><a href="lista_de_compras.html">Lista de Compras</a></li>
-        <li><a href="rastreamento_de_habitos.html">Rastreamento de Hábitos</a></li>
-        <li><a href="dicionario_pessoal.html">Dicionário Pessoal</a></li>
-        <li><a href="planejador_de_refeicoes.html">Planejador de Refeições</a></li>
-        <li><a href="verificador_de_senhas.html">Verificador de Senhas</a></li>
-        <li><a href="contador_de_calorias.html">Contador de Calorias</a></li>
-        <li><a href="calendario_de_eventos.html">Calendário de Eventos</a></li>
-        <li><a href="organizador_de_receitas.html">Organizador de Receitas</a></li>
-        <li><a href="consultoria_de_bem_estar.html">Consultoria de Bem-estar</a></li>
-        <li><a href="calculo_imc.html">Cálculo de IMC</a></li>
-        <li><a href="organizador_de_fotos.html">Organizador de Fotos</a></li>
-        <li><a href="banco_de_ideias_criativas.html">Banco de Ideias Criativas</a></li>
-        <li><a href="organizador_de_tarefas_de_casa.html">Organizador de Tarefas de Casa</a></li>
-        <li><a href="teste_de_personalidade.html">Testes de Personalidade</a></li>
-        <li><a href="calculadora_financeira.html">Calculadora Financeira</a></li>
-        <li><a href="materia_escolar.html">Matéria Escolar</a></li>
-        <li><a href="tabuada.html">Tabuada</a></li>
-        <li><a href="traducao.html">Tradução</a></li>
-        <li><a href="sobre_o_app.html" class="sobre-app">Sobre o App</a></li>
+        <li><a href="agenda_de_tarefas.html"><i class="fas fa-calendar-check"></i> Agenda de Tarefas</a></li>
+        <li><a href="conversor_de_unidades.html"><i class="fas fa-random"></i> Conversor de Unidades</a></li>
+        <li><a href="calculadora.html"><i class="fas fa-calculator"></i> Calculadora Simples</a></li>
+        <li><a href="lista_de_compras.html"><i class="fas fa-list-ul"></i> Lista de Compras</a></li>
+        <li><a href="rastreamento_de_habitos.html"><i class="fas fa-chart-line"></i> Rastreamento de Hábitos</a></li>
+        <li><a href="dicionario_pessoal.html"><i class="fas fa-book"></i> Dicionário Pessoal</a></li>
+        <li><a href="planejador_de_refeicoes.html"><i class="fas fa-utensils"></i> Planejador de Refeições</a></li>
+        <li><a href="verificador_de_senhas.html"><i class="fas fa-lock"></i> Verificador de Senhas</a></li>
+        <li><a href="contador_de_calorias.html"><i class="fas fa-fire"></i> Contador de Calorias</a></li>
+        <li><a href="calendario_de_eventos.html"><i class="fas fa-calendar-alt"></i> Calendário de Eventos</a></li>
+        <li><a href="organizador_de_receitas.html"><i class="fas fa-clipboard-list"></i> Organizador de Receitas</a></li>
+        <li><a href="consultoria_de_bem_estar.html"><i class="fas fa-user-md"></i> Consultoria de Bem-estar</a></li>
+        <li><a href="calculo_imc.html"><i class="fas fa-heart"></i> Cálculo de IMC</a></li>
+        <li><a href="organizador_de_fotos.html"><i class="fas fa-image"></i> Organizador de Fotos</a></li>
+        <li><a href="banco_de_ideias_criativas.html"><i class="fas fa-lightbulb"></i> Banco de Ideias Criativas</a></li>
+        <li><a href="organizador_de_tarefas_de_casa.html"><i class="fas fa-home"></i> Organizador de Tarefas de Casa</a></li>
+        <li><a href="teste_de_personalidade.html"><i class="fas fa-puzzle-piece"></i> Testes de Personalidade</a></li>
+        <li><a href="calculadora_financeira.html"><i class="fas fa-piggy-bank"></i> Calculadora Financeira</a></li>
+        <li><a href="materia_escolar.html"><i class="fas fa-school"></i> Matéria Escolar</a></li>
+        <li><a href="tabuada.html"><i class="fas fa-plus-square"></i> Tabuada</a></li>
+        <li><a href="traducao.html"><i class="fas fa-language"></i> Tradução</a></li>
+        <li><a href="sobre_o_app.html" class="sobre-app"><i class="fas fa-info-circle"></i> Sobre o App</a></li>
+        <li><a href="politica_de_uso_e_termos_de_privacidade.html" class="politica-uso"><i class="fas fa-shield-alt"></i> Política de Uso e Termos de Privacidade</a></li> <!-- Nova categoria destacada -->
       </ul>
     </nav>
 
@@ -207,13 +232,15 @@
       document.querySelector('.container').style.display = 'flex';
     }, 4000); // 4000ms = 4 segundos
 
-    // Alterna imagens na imagem-container
+    // Carrossel de imagens
     const images = document.querySelectorAll('.image-container img');
     let currentIndex = 0;
 
     setInterval(() => {
       images[currentIndex].classList.remove('active');
+      images[currentIndex].classList.add('next');
       currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.remove('next');
       images[currentIndex].classList.add('active');
     }, 3000); // 3000ms = 3 segundos
 

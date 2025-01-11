@@ -154,18 +154,41 @@
     </div>
 
     <!-- Botão Voltar -->
-    <a href="/index.html" class="back-button">Voltar</a>
+    <a href="index.html" class="back-button">Voltar</a>
 </div>
 
 <script>
-    // Função simulada para gerar ideias melhores com base na ideia do usuário
+    // Carregar a ideia salva no localStorage, se houver
+    document.addEventListener("DOMContentLoaded", function() {
+        const savedIdea = localStorage.getItem("userIdea");
+        if (savedIdea) {
+            document.getElementById("userIdea").value = savedIdea;
+        }
+
+        // Carregar ideias salvas no localStorage e exibir
+        const savedIdeas = JSON.parse(localStorage.getItem("generatedIdeas"));
+        if (savedIdeas && savedIdeas.length > 0) {
+            displayIdeas(savedIdeas);
+        }
+    });
+
+    // Função para salvar a ideia do usuário no localStorage
+    function saveUserIdea() {
+        const userIdea = document.getElementById('userIdea').value.trim();
+        localStorage.setItem('userIdea', userIdea);
+    }
+
+    // Função para gerar ideias baseadas na ideia do usuário
     function generateIdeas() {
         const userIdea = document.getElementById('userIdea').value.trim();
-
+        
         if (userIdea === "") {
             alert("Por favor, insira sua ideia antes de gerar sugestões.");
             return;
         }
+
+        // Salvar a ideia do usuário
+        saveUserIdea();
 
         // Simulando o comportamento de uma IA gerando ideias mais criativas
         const ideas = [
@@ -191,11 +214,19 @@
             }
         }
 
+        // Salvar as ideias geradas no localStorage
+        localStorage.setItem("generatedIdeas", JSON.stringify(generatedIdeas));
+
         // Exibir as ideias geradas na interface
+        displayIdeas(generatedIdeas);
+    }
+
+    // Função para exibir as ideias na tela
+    function displayIdeas(ideas) {
         const ideasContainer = document.getElementById('ideasContainer');
         ideasContainer.innerHTML = '';
 
-        generatedIdeas.forEach(idea => {
+        ideas.forEach(idea => {
             const ideaElement = document.createElement('div');
             ideaElement.classList.add('idea');
             ideaElement.textContent = idea;

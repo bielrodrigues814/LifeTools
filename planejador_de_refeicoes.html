@@ -284,10 +284,24 @@
     <div class="meal-list" id="mealList"></div>
 
     <!-- Botão para voltar -->
-    <a href="/index.html" class="back-btn">Voltar</a>
+    <a href="file:///C:/wamp64/www/LifeTools/index.html" class="back-btn">Voltar</a>
   </div>
 
   <script>
+    // Função para salvar refeições no LocalStorage
+    function saveToLocalStorage() {
+      localStorage.setItem('meals', JSON.stringify(meals));
+    }
+
+    // Função para carregar refeições do LocalStorage
+    function loadFromLocalStorage() {
+      const savedMeals = localStorage.getItem('meals');
+      if (savedMeals) {
+        meals = JSON.parse(savedMeals);
+        renderMeals();
+      }
+    }
+
     // Variáveis de controle
     let meals = [];
 
@@ -303,6 +317,7 @@
         };
 
         meals.push(meal);
+        saveToLocalStorage();
         renderMeals();
         clearInputFields();
       } else {
@@ -346,14 +361,19 @@
       document.getElementById('mealName').value = meal.name;
       document.getElementById('mealDesc').value = meal.description;
       meals.splice(index, 1); // Remove a refeição para não duplicar
+      saveToLocalStorage();
       renderMeals();
     }
 
     // Função para excluir uma refeição
     function deleteMeal(index) {
       meals.splice(index, 1);
+      saveToLocalStorage();
       renderMeals();
     }
+
+    // Carregar refeições salvas ao carregar a página
+    window.onload = loadFromLocalStorage;
   </script>
 
 </body>

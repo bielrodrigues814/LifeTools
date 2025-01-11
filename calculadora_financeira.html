@@ -188,8 +188,13 @@
 </div>
 
 <script>
-    let accounts = [];
-    let salary = 0;
+    // Recuperando os dados do localStorage
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+    let salary = localStorage.getItem('salary') || 0;
+
+    // Exibindo os dados recuperados, se houver
+    document.getElementById('salary').value = salary;
+    updateAccountList();
 
     // Função para adicionar a conta à lista
     function addAccount() {
@@ -200,6 +205,7 @@
         }
 
         accounts.push(accountValue);
+        localStorage.setItem('accounts', JSON.stringify(accounts));
         updateAccountList();
         document.getElementById('account').value = ''; // Limpar o campo de valor
     }
@@ -227,6 +233,7 @@
     // Função para remover uma conta da lista
     function removeAccount(index) {
         accounts.splice(index, 1);
+        localStorage.setItem('accounts', JSON.stringify(accounts));
         updateAccountList();
     }
 
@@ -237,6 +244,8 @@
             alert("Por favor, insira um valor válido para o salário.");
             return;
         }
+
+        localStorage.setItem('salary', salary); // Salvando o salário no localStorage
 
         const totalExpenses = accounts.reduce((total, account) => total + account, 0);
         const remainingBalance = salary - totalExpenses;

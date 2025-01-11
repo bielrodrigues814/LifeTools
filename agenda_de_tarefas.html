@@ -275,11 +275,14 @@
 
       <button class="save-pdf-btn" onclick="saveAsPDF()">Salvar como PDF</button>
 
-      <button class="save-pdf-btn" onclick="window.location.href='file:///C:/wamp64/www/LifeTools/index.html';">Voltar</button>
+      <button class="save-pdf-btn" onclick="window.location.href='index.html';">Voltar</button>
     </div>
   </div>
 
   <script>
+    // Carregar as tarefas salvas do localStorage
+    document.addEventListener("DOMContentLoaded", loadTasks);
+
     function addTask() {
       const title = document.getElementById('task-title').value;
       const date = document.getElementById('task-date').value;
@@ -291,29 +294,51 @@
         return;
       }
 
-      const taskList = document.getElementById('task-list');
-      const li = document.createElement('li');
-      li.innerHTML = `
-        <div class="task-info">
-          <h3>${title}</h3>
-          <p>${description}</p>
-          <p><strong>Data:</strong> ${date} | <strong>Hora:</strong> ${time}</p>
-        </div>
-        <div class="task-actions">
-          <button onclick="deleteTask(this)">Deletar</button>
-        </div>
-      `;
-      taskList.appendChild(li);
+      const task = {
+        title,
+        date,
+        time,
+        description
+      };
 
-      document.getElementById('task-title').value = '';
-      document.getElementById('task-date').value = '';
-      document.getElementById('task-time').value = '';
-      document.getElementById('task-desc').value = '';
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      tasks.push(task);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+
+      renderTasks();
+      clearForm();
     }
 
-    function deleteTask(button) {
-      const li = button.parentElement.parentElement;
-      li.remove();
+    function loadTasks() {
+      renderTasks();
+    }
+
+    function renderTasks() {
+      const taskList = document.getElementById('task-list');
+      taskList.innerHTML = '';
+      const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+      tasks.forEach(task => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div class="task-info">
+            <h3>${task.title}</h3>
+            <p>${task.description}</p>
+            <p><strong>Data:</strong> ${task.date} | <strong>Hora:</strong> ${task.time}</p>
+          </div>
+          <div class="task-actions">
+            <button onclick="deleteTask('${task.title}')">Deletar</button>
+          </div>
+        `;
+        taskList.appendChild(li);
+      });
+    }
+
+    function deleteTask(taskTitle) {
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      tasks = tasks.filter(task => task.title !== taskTitle);
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      renderTasks();
     }
 
     function saveAsPDF() {
@@ -337,6 +362,13 @@
       });
 
       doc.save('agenda_de_tarefas.pdf');
+    }
+
+    function clearForm() {
+      document.getElementById('task-title').value = '';
+      document.getElementById('task-date').value = '';
+      document.getElementById('task-time').value = '';
+      document.getElementById('task-desc').value = '';
     }
   </script>
 </body>

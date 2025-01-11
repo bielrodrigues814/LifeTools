@@ -184,46 +184,87 @@
     </ul>
 
     <!-- Botão Voltar -->
-    <a href="https://seu-usuario.github.io/seu-repositorio" class="back-button">Voltar</a>
+    <a href="index.html" class="back-button">Voltar</a>
 </div>
 
 <script>
+    // Função para carregar tarefas do LocalStorage
+    function loadTasks() {
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const taskList = document.getElementById('taskList');
+
+        tasks.forEach(task => {
+            const taskItem = document.createElement('li');
+            taskItem.classList.add('task-item');
+            if (task.completed) taskItem.classList.add('completed');
+
+            const taskContent = document.createElement('span');
+            taskContent.textContent = task.text;
+            taskItem.appendChild(taskContent);
+
+            const completeButton = document.createElement('button');
+            completeButton.textContent = task.completed ? 'Desmarcar' : 'Concluir';
+            completeButton.onclick = function() {
+                taskItem.classList.toggle('completed');
+                task.completed = !task.completed;
+                completeButton.textContent = task.completed ? 'Desmarcar' : 'Concluir';
+                saveTasks();
+            };
+            taskItem.appendChild(completeButton);
+
+            taskList.appendChild(taskItem);
+        });
+    }
+
+    // Função para salvar tarefas no LocalStorage
+    function saveTasks() {
+        const tasks = [];
+        const taskList = document.getElementById('taskList');
+        taskList.querySelectorAll('.task-item').forEach(item => {
+            const taskText = item.querySelector('span').textContent;
+            const taskCompleted = item.classList.contains('completed');
+            tasks.push({ text: taskText, completed: taskCompleted });
+        });
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
     // Função para adicionar tarefas
     function addTask() {
         const taskInput = document.getElementById('taskInput');
         const taskList = document.getElementById('taskList');
         const taskText = taskInput.value.trim();
 
-        // Verificar se a tarefa não está vazia
         if (taskText === "") {
             alert("Por favor, insira uma tarefa.");
             return;
         }
 
-        // Criar um item de lista para a tarefa
         const taskItem = document.createElement('li');
         taskItem.classList.add('task-item');
 
-        // Criar o conteúdo da tarefa
         const taskContent = document.createElement('span');
         taskContent.textContent = taskText;
         taskItem.appendChild(taskContent);
 
-        // Criar o botão de concluir tarefa
         const completeButton = document.createElement('button');
         completeButton.textContent = 'Concluir';
         completeButton.onclick = function() {
             taskItem.classList.toggle('completed');
             completeButton.textContent = taskItem.classList.contains('completed') ? 'Desmarcar' : 'Concluir';
+            saveTasks();
         };
         taskItem.appendChild(completeButton);
 
-        // Adicionar a tarefa à lista
         taskList.appendChild(taskItem);
 
-        // Limpar o campo de entrada
+        // Salvar as tarefas no LocalStorage
+        saveTasks();
+
         taskInput.value = "";
     }
+
+    // Carregar tarefas ao carregar a página
+    window.onload = loadTasks;
 </script>
 
 </body>

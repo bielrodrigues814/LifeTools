@@ -319,6 +319,7 @@
     function saveAsPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
+      doc.setFontSize(18);
 
       doc.text("Agenda de Tarefas", 20, 10);
       const taskList = document.getElementById('task-list').children;
